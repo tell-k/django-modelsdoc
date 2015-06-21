@@ -135,7 +135,7 @@ MIT Licence. See the LICENSE file for specific terms.
 History
 =======
 
-0.1.1(Jun 21, 2015)
+0.1.2(Jun 21, 2015)
 ---------------------
 * Bug fixed. Not include output templates.
 
