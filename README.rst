@@ -18,7 +18,7 @@ Quick start
 
 2. Run **python manage.py listing_models** to listing model definition
 
-You can check `Sample listing models<https://github.com/tell-k/django-modelsdoc/blob/master/tests/sample_models.rst>`
+You can check `Sample listing models<https://github.com/tell-k/django-modelsdoc/blob/master/tests/sample_models.rst>`_
 
 Option
 -----------
