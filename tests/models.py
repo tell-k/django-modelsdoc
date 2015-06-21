@@ -10,14 +10,15 @@ class Poll(models.Model):
     * Poll has question and description fields
     """
 
-    question = models.CharField(max_length=255)
-    description = models.TextField(blank=True)
+    question = models.CharField('Question Name', max_length=255)
+    description = models.TextField('Description', blank=True)
     """ Description field allows Blank """
 
-    null_field = models.CharField(null=True, max_length=255)
-    blank_field = models.CharField(blank=True, max_length=255)
-    both_field = models.CharField(null=True, blank=True, max_length=255)
-    index_field = models.CharField(db_index=True, max_length=255)
+    null_field = models.CharField('Null Test', null=True, max_length=255)
+    blank_field = models.CharField('Blank Test', blank=True, max_length=255)
+    both_field = models.CharField('Both Test',
+                                  null=True, blank=True, max_length=255)
+    index_field = models.CharField('Index Test', db_index=True, max_length=255)
 
     class Meta:
         verbose_name = 'Poll'
@@ -36,8 +37,9 @@ class Choice(models.Model):
         (3, 'test3'),
     )
 
-    poll = models.ForeignKey(Poll)
-    choice = models.SmallIntegerField(max_length=255, choices=CHOICES)
+    poll = models.ForeignKey(Poll, verbose_name='Poll')
+    choice = models.SmallIntegerField('Choice',
+                                      max_length=255, choices=CHOICES)
 
     class Meta:
         verbose_name = 'Choice'
@@ -51,9 +53,9 @@ class Vote(models.Model):
     * Vote has choice reference
     """
 
-    user = models.ForeignKey(User)
-    poll = models.ForeignKey(Poll)
-    choice = models.ForeignKey(Choice)
+    user = models.ForeignKey(User, verbose_name='Voted User')
+    poll = models.ForeignKey(Poll, verbose_name='Voted Poll')
+    choice = models.ForeignKey(Choice, verbose_name='Voted Choice')
 
     class Meta:
         verbose_name = 'Vote'

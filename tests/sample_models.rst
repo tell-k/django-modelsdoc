@@ -33,7 +33,7 @@ Poll(tests.models.Poll)
      - 
      - Blank
      - 
-   * - question
+   * - Question Name
      - question
      - varchar(255)
      - 
@@ -41,15 +41,15 @@ Poll(tests.models.Poll)
      - 
      - 
      - 
-   * - description
+   * - Description
      - description
      - text
      - 
      - 
      - 
      - Blank
-     - 
-   * - null field
+     - Description field allows Blank  
+   * - Null Test
      - null_field
      - varchar(255)
      - 
@@ -57,7 +57,7 @@ Poll(tests.models.Poll)
      - 
      - Null
      - 
-   * - blank field
+   * - Blank Test
      - blank_field
      - varchar(255)
      - 
@@ -65,7 +65,7 @@ Poll(tests.models.Poll)
      - 
      - Blank
      - 
-   * - both field
+   * - Both Test
      - both_field
      - varchar(255)
      - 
@@ -73,7 +73,7 @@ Poll(tests.models.Poll)
      - 
      - Both
      - 
-   * - index field
+   * - Index Test
      - index_field
      - varchar(255)
      - 
@@ -114,7 +114,7 @@ Choice(tests.models.Choice)
      - 
      - Blank
      - 
-   * - poll
+   * - Poll
      - poll
      - integer
      - 
@@ -122,7 +122,7 @@ Choice(tests.models.Choice)
      - True
      - 
      - FK:tests.models.Poll
-   * - choice
+   * - Choice
      - choice
      - smallint
      - 
@@ -164,7 +164,7 @@ Vote(tests.models.Vote)
      - 
      - Blank
      - 
-   * - user
+   * - Voted User
      - user
      - integer
      - 
@@ -172,7 +172,7 @@ Vote(tests.models.Vote)
      - True
      - 
      - FK:django.contrib.auth.models.User
-   * - poll
+   * - Voted Poll
      - poll
      - integer
      - 
@@ -180,7 +180,7 @@ Vote(tests.models.Vote)
      - True
      - 
      - FK:tests.models.Poll
-   * - choice
+   * - Voted Choice
      - choice
      - integer
      - 
@@ -500,54 +500,5 @@ Options::
 
  ordering : ('name',)
  unique_together : (('app_label', 'model'),)
-
-
-site(django.contrib.sites.models.Site)
------------------------------------------------------------------------------------------
-
-::
-
- Site(id, domain, name)
-
-.. list-table::
-   :header-rows: 1
-
-   * - Fullname
-     - Name
-     - Type
-     - PK
-     - Unique
-     - Index
-     - Null/Blank
-     - Comment
-   * - ID
-     - id
-     - integer
-     - True
-     - True
-     - 
-     - Blank
-     - 
-   * - domain name
-     - domain
-     - varchar(100)
-     - 
-     - 
-     - 
-     - 
-     - 
-   * - display name
-     - name
-     - varchar(50)
-     - 
-     - 
-     - 
-     - 
-     -
-
-
-Options::
-
- ordering : ('domain',)
 
 

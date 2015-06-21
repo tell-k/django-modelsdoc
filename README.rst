@@ -24,7 +24,7 @@ Option
 -----------
 
 --app(-a)
------------------
+~~~~~~~~~~~~
 
 You can pass specify app name. Listing only the specified app.
 
@@ -33,7 +33,7 @@ You can pass specify app name. Listing only the specified app.
  $ python manage.py listing_models --app polls
 
 --output(-o)
------------------
+~~~~~~~~~~~~~~~~
 
 It writes the results to the specified file.
 
@@ -42,7 +42,7 @@ It writes the results to the specified file.
  $ python manage.py listing_models --output sample.rst
 
 --format(-f)
------------------
+~~~~~~~~~~~~~~~~
 
 You can choice output format. **rst** (reStructuredText) or **md** (Markdown). Default format is **rst**.
 
@@ -50,10 +50,72 @@ You can choice output format. **rst** (reStructuredText) or **md** (Markdown). D
 
  $ python manage.py listing_models --format md
 
-Customize
------------
+Customize Settings
+--------------------
 
-TODO
+MODELSDOC_APPS
+~~~~~~~~~~~~~~~~~~~~
+
+You can specify the apps and change the order.
+
+::
+
+ # output only models of poll
+ MODELSDOC_APPS = (polls,)
+
+
+MODELSDOC_DISPLAY_FIELDS
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can specify the field value and change the order.
+
+::
+
+ MODELSDOC_DISPLAY_FIELDS = (
+     ('Fullname', 'verbose_name'),
+     ('Name', 'name'),
+     ('Type', 'db_type'),
+     ('PK', 'primary_key'),
+     ('Unique', 'unique'),
+     ('Index', 'db_index'),
+     ('Null/Blank', 'null_blank'),
+     ('Comment', 'comment'),
+ )
+
+MODELSDOC_DISPLAY_FIELDS
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+TODO more documented
+
+::
+
+ MODELSDOC_MODEL_OPTIONS = (
+     'unique_together',
+     'index_together',
+     'ordering',
+     'permissions',
+     'get_latest_by',
+     'order_with_respect_to',
+     'db_tablespace',
+     'abstract',
+     'swappable',
+     'select_on_save',
+     'default_permissions',
+     'default_related_name'
+ )
+
+Other settings
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+TODO more documented
+
+::
+
+ MODELSDOC_OUTPUT_TEMPLATE = 'modelsdoc/models'
+ MODELSDOC_OUTPUT_FORMAT = 'rst' # default format
+ MODELSDOC_MODEL_WRAPPER = 'modelsdoc.wrappers.ModelWrapper'
+ MODELSDOC_FIELD_WRAPPER = 'modelsdoc.wrappers.FieldWrapper'
+
 
 Python and Django Support
 ---------------------------
