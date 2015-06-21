@@ -2,10 +2,10 @@
 django-modelsdoc
 =====================
 
-TODO
+|travis| |coveralls| |requires|
 
 Quick start
------------
+=============
 
 1. Add "modelsdoc" to your INSTALLED_APPS setting like this
 
@@ -21,10 +21,10 @@ Quick start
 * You can see `the results <https://github.com/tell-k/django-modelsdoc/blob/master/tests/sample_models.rst>`_ of executing the command to `tests/models.py <https://github.com/tell-k/django-modelsdoc/blob/master/tests/models.py>`_.
 
 Option
------------
+=======
 
 --app(-a)
-~~~~~~~~~~~~
+-----------
 
 You can pass specify app name. Listing only the specified app.
 
@@ -33,7 +33,7 @@ You can pass specify app name. Listing only the specified app.
  $ python manage.py listing_models --app polls
 
 --output(-o)
-~~~~~~~~~~~~~~~~
+-------------
 
 It writes the results to the specified file.
 
@@ -42,7 +42,7 @@ It writes the results to the specified file.
  $ python manage.py listing_models --output sample.rst
 
 --format(-f)
-~~~~~~~~~~~~~~~~
+-------------
 
 You can choice output format. **rst** (reStructuredText) or **md** (Markdown). Default format is **rst**.
 
@@ -51,10 +51,10 @@ You can choice output format. **rst** (reStructuredText) or **md** (Markdown). D
  $ python manage.py listing_models --format md
 
 Customize Settings
---------------------
+===================
 
 MODELSDOC_APPS
-~~~~~~~~~~~~~~~~~~~~
+----------------
 
 You can specify the apps and change the order.
 
@@ -65,7 +65,7 @@ You can specify the apps and change the order.
 
 
 MODELSDOC_DISPLAY_FIELDS
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------
 
 You can specify the field value and change the order.
 
@@ -83,9 +83,9 @@ You can specify the field value and change the order.
  )
 
 MODELSDOC_DISPLAY_FIELDS
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------
 
-TODO more documented
+# TODO more documented
 
 ::
 
@@ -105,9 +105,9 @@ TODO more documented
  )
 
 Other settings
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---------------
 
-TODO more documented
+# TODO more documented
 
 ::
 
@@ -118,7 +118,7 @@ TODO more documented
 
 
 Python and Django Support
----------------------------
+=========================
 
 .. csv-table::
    :widths: 10, 10, 10, 10, 10
@@ -130,11 +130,37 @@ Python and Django Support
    "Python 3.4","","","◯","◯"
 
 License
------------
+=======
 
-MIT Licence
+MIT Licence. See the LICENSE file for specific terms.
 
 History
------------
+=======
 
+0.1.0(Jun 21, 2015)
+---------------------
+* First release
+
+.. |travis| image:: https://travis-ci.org/tell-k/django-modelsdoc.svg?branch=master
+    :target: https://travis-ci.org/tell-k/django-modelsdoc
+
+.. |coveralls| image:: https://coveralls.io/repos/tell-k/django-modelsdoc/badge.png
+    :target: https://coveralls.io/r/tell-k/django-modelsdoc
+    :alt: coveralls.io
+
+.. |requires| image:: https://requires.io/github/tell-k/django-modelsdoc/requirements.svg?branch=master
+    :target: https://requires.io/github/tell-k/django-modelsdoc/requirements/?branch=master
+    :alt: requirements status
+
+.. |downloads| image:: https://img.shields.io/pypi/dm/django-modelsdoc.svg
+    :target: http://pypi.python.org/pypi/django-modelsdoc/
+    :alt: downloads
+
+.. |version| image:: https://img.shields.io/pypi/v/django-modelsdoc.svg
+    :target: http://pypi.python.org/pypi/django-modelsdoc/
+    :alt: latest version
+
+.. |license| image:: https://img.shields.io/pypi/l/django-modelsdoc.svg
+    :target: http://pypi.python.org/pypi/django-modelsdoc/
+    :alt: license
 
