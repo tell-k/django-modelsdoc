@@ -10,8 +10,6 @@ env:
    - TOXENV=pypy-django1.6
    - TOXENV=pypy-django1.7
    - TOXENV=pypy-django1.8
-   - TOXENV=py32-django1.7
-   - TOXENV=py32-django1.8
    - TOXENV=py33-django1.7
    - TOXENV=py33-django1.8
    - TOXENV=py34-django1.7

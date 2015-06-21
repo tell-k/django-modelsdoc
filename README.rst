@@ -27,6 +27,12 @@ Customize
 
 TODO
 
+Python and Django Support
+---------------------------
+
+* Python2.7 Django1.5 Django1.6 Django1.7 Django1.8
+* PyPy Django1.5 Django1.6 Django1.7 Django1.8
+
 License
 -----------
 
