@@ -1,8 +1,6 @@
-=====================
-django-modelsdoc
-=====================
+Create models definitions document from your django project. This project help the documentation related to Django models.
 
-|travis| |coveralls| |requires|
+|travis| |coveralls| |downloads| |version| |license| |requires|
 
 Quick start
 =============
@@ -163,4 +161,3 @@ History
 .. |license| image:: https://img.shields.io/pypi/l/django-modelsdoc.svg
     :target: http://pypi.python.org/pypi/django-modelsdoc/
     :alt: license
-

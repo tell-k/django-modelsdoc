@@ -6,6 +6,7 @@ from setuptools.command.test import test as TestCommand
 
 
 class DjangoTest(TestCommand):
+
     def initialize_options(self):
         TestCommand.initialize_options(self)
 
@@ -66,11 +67,10 @@ classifiers = [
     'Programming Language :: Python :: 2',
     'Programming Language :: Python :: 2.7',
     'Programming Language :: Python :: 3',
-    'Programming Language :: Python :: 3.2',
     'Programming Language :: Python :: 3.3',
     'Programming Language :: Python :: 3.4',
-    'Topic :: Internet :: WWW/HTTP',
-    'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
+    'Topic :: Documentation',
+    'Topic :: Documentation :: Sphinx',
 ]
 
 setup(
@@ -79,9 +79,10 @@ setup(
     packages=find_packages(exclude=['tests']),
     include_package_data=True,
     license='MIT',
-    description='A simple Django app to conduct Web-based polls.',
+    keywords='django models document documentation',
+    description='Create models definitions document from your Django project.',
     long_description=readme,
-    url='http://www.example.com/',
+    url='https://github.com/tell-k/django-modelsdoc',
     install_requires=install_requires,
     tests_require=tests_require,
     cmdclass={'test': DjangoTest},
