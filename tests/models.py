@@ -12,6 +12,7 @@ class Poll(models.Model):
 
     question = models.CharField(max_length=255)
     description = models.TextField(blank=True)
+    """ Description field allows Blank """
 
     null_field = models.CharField(null=True, max_length=255)
     blank_field = models.CharField(blank=True, max_length=255)

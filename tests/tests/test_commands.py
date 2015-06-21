@@ -28,6 +28,7 @@ class TestModels2rst(TestCase):
         self.assertTrue('* - question' in o.captured)
         self.assertTrue('- varchar(255)' in o.captured)
         self.assertTrue("unique_together : (('user', 'poll'),)" in o.captured)
+        self.assertTrue("Description field allows Blank" in o.captured)
 
     def test_option_app(self):
         with OutputCapture() as o:
@@ -39,6 +40,7 @@ class TestModels2rst(TestCase):
         self.assertTrue('* - question' in o.captured)
         self.assertTrue('- varchar(255)' in o.captured)
         self.assertTrue("unique_together : (('user', 'poll'),)" in o.captured)
+        self.assertTrue("Description field allows Blank" in o.captured)
 
         with OutputCapture() as o:
             self._callCommand(app='missing_app')
@@ -63,6 +65,7 @@ class TestModels2rst(TestCase):
         self.assertTrue('* - question' in body)
         self.assertTrue('- varchar(255)' in body)
         self.assertTrue("unique_together : (('user', 'poll'),)" in body)
+        self.assertTrue("Description field allows Blank" in body)
 
     def test_option_format(self):
 
@@ -75,6 +78,7 @@ class TestModels2rst(TestCase):
         self.assertTrue('* - question' in o.captured)
         self.assertTrue('- varchar(255)' in o.captured)
         self.assertTrue("unique_together : (('user', 'poll'),)" in o.captured)
+        self.assertTrue("Description field allows Blank" in o.captured)
 
         with OutputCapture() as o:
             self._callCommand(output_format='md')
@@ -84,6 +88,7 @@ class TestModels2rst(TestCase):
         self.assertTrue('## Vote(tests.models.Vote)' in o.captured)
         self.assertTrue('|question|question|varchar(255)||||||' in o.captured)
         self.assertTrue("unique_together : (('user', 'poll'),)" in o.captured)
+        self.assertTrue("Description field allows Blank" in o.captured)
 
         with OutputCapture() as o:
             self._callCommand(output_format='unknown')
