@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import re
 import os
 from setuptools import setup, find_packages
 from setuptools.command.test import test as TestCommand
@@ -35,7 +36,14 @@ class DjangoTest(TestCommand):
         errno = runner.run_tests(['tests'])
         sys.exit(errno)
 
-with open(os.path.join(os.path.dirname(__file__), 'README.rst')) as fp:
+
+here = os.path.dirname(__file__)
+
+with open(os.path.join(here, 'modelsdoc', '__init__.py'), 'r') as f:
+    version = re.compile(
+        r".*__version__ = '(.*?)'", re.S).match(f.read()).group(1)
+
+with open(os.path.join(here, 'README.rst')) as fp:
     readme = fp.read()
 
 # allow setup.py to be run from any path
@@ -75,7 +83,7 @@ classifiers = [
 
 setup(
     name='django-modelsdoc',
-    version='0.1.0',
+    version=version,
     packages=find_packages(exclude=['tests']),
     include_package_data=True,
     license='MIT',

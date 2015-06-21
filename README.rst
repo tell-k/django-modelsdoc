@@ -80,7 +80,7 @@ You can specify the field value and change the order.
      ('Comment', 'comment'),
  )
 
-MODELSDOC_DISPLAY_FIELDS
+MODELSDOC_MODEL_OPTIONS
 -------------------------
 
 # TODO more documented
@@ -135,9 +135,14 @@ MIT Licence. See the LICENSE file for specific terms.
 History
 =======
 
+0.1.1(Jun 21, 2015)
+---------------------
+* Bug fixed. Not include output templates.
+
 0.1.0(Jun 21, 2015)
 ---------------------
 * First release
+
 
 .. |travis| image:: https://travis-ci.org/tell-k/django-modelsdoc.svg?branch=master
     :target: https://travis-ci.org/tell-k/django-modelsdoc
