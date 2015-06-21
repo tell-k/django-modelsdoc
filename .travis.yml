@@ -1,4 +1,4 @@
-nguage: python
+language: python
 python: 3.4
 env:
   matrix:
@@ -19,7 +19,7 @@ env:
    - TOXENV=flake8
 
 install:
-  - sudo pip install tox
+  - pip install tox
   - if test "$TOXENV" = py34 ; then pip install coveralls ; fi
 script: tox
 after_script:
