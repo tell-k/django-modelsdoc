@@ -19,7 +19,7 @@ env:
    - TOXENV=flake8
 
 install:
-  - pip install tox
+  - sudo pip install tox
   - if test "$TOXENV" = py34 ; then pip install coveralls ; fi
 script: tox
 after_script:
