@@ -1,0 +1,6 @@
+include LICENSE
+include README.rst
+include setup.py
+include tox.ini
+recursive-include models/*
+recursive-include tests/*

@@ -1,0 +1,15 @@
+.DS_Store
+*~
+\#*
+.\#*
+*.swp
+tmp/
+build/
+dist/
+*.pyc
+*.egg
+*.eggs
+*.egg-info
+.tox
+.coverage
+__pycache__

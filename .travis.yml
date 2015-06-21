@@ -1,0 +1,26 @@
+nguage: python
+python: 3.4
+env:
+  matrix:
+   - TOXENV=py27-django1.5
+   - TOXENV=py27-django1.6
+   - TOXENV=py27-django1.7
+   - TOXENV=py27-django1.8
+   - TOXENV=pypy-django1.5
+   - TOXENV=pypy-django1.6
+   - TOXENV=pypy-django1.7
+   - TOXENV=pypy-django1.8
+   - TOXENV=py32-django1.7
+   - TOXENV=py32-django1.8
+   - TOXENV=py33-django1.7
+   - TOXENV=py33-django1.8
+   - TOXENV=py34-django1.7
+   - TOXENV=py34-django1.8
+   - TOXENV=flake8
+
+install:
+  - pip install tox
+  - if test "$TOXENV" = py34 ; then pip install coveralls ; fi
+script: tox
+after_script:
+  - if test "$TOXENV" = py34 ; then coveralls ; fi
