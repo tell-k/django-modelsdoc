@@ -14,7 +14,7 @@ import django
 from modelsdoc.utils import (
     class_to_string, get_foreignkey,
     get_choices, get_null_blank, import_class,
-    get_model_attr
+    get_model_attr, get_fields_attr
 )
 from modelsdoc import constants
 
@@ -99,7 +99,7 @@ class ModelWrapper(object):
     def fields(self):
         return [
             self._field_wrapper_cls(f, self, self._connection, self.attrdocs)
-            for f in self._model._meta.concrete_fields
+            for f in get_fields_attr(self._model._meta, django.VERSION)
         ]
 
     def __getattr__(self, name):

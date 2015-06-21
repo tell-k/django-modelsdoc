@@ -34,6 +34,28 @@ class TestGetModelAttr(unittest.TestCase):
                          self._callFUT(DummyMetaOption(), (1, 5)))
 
 
+class TestGetFieldsAttr(unittest.TestCase):
+
+    def _getTarget(self):
+        from modelsdoc.utils import get_fields_attr
+        return get_fields_attr
+
+    def _callFUT(self, *args, **kwargs):
+        return self._getTarget()(*args, **kwargs)
+
+    def test_it(self):
+
+        class DummyMetaOption(object):
+
+            concrete_fields = 'concrete_fields'
+            fields = 'fields'
+
+        self.assertEqual('concrete_fields',
+                         self._callFUT(DummyMetaOption(), (1, 6)))
+        self.assertEqual('fields',
+                         self._callFUT(DummyMetaOption(), (1, 5)))
+
+
 class TestGetParentModelAttr(unittest.TestCase):
 
     def _getTarget(self):

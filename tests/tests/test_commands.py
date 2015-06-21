@@ -25,19 +25,25 @@ class TestModels2rst(TestCase):
         self.assertTrue('Poll(tests.models.Poll)' in o.captured)
         self.assertTrue('Choice(tests.models.Choice)' in o.captured)
         self.assertTrue('Vote(tests.models.Vote)' in o.captured)
+        self.assertTrue('* - question' in o.captured)
+        self.assertTrue('- varchar(255)' in o.captured)
+        self.assertTrue("unique_together : (('user', 'poll'),)" in o.captured)
 
     def test_option_app(self):
         with OutputCapture() as o:
-            self._callCommand(app="tests")
+            self._callCommand(app='tests')
 
         self.assertTrue('Poll(tests.models.Poll)' in o.captured)
         self.assertTrue('Choice(tests.models.Choice)' in o.captured)
         self.assertTrue('Vote(tests.models.Vote)' in o.captured)
+        self.assertTrue('* - question' in o.captured)
+        self.assertTrue('- varchar(255)' in o.captured)
+        self.assertTrue("unique_together : (('user', 'poll'),)" in o.captured)
 
         with OutputCapture() as o:
-            self._callCommand(app="missing_app")
+            self._callCommand(app='missing_app')
 
-        self.assertTrue("Cannot find models" in o.captured)
+        self.assertTrue('Cannot find models' in o.captured)
 
     def test_option_output(self):
         import tempfile
@@ -46,7 +52,7 @@ class TestModels2rst(TestCase):
         with OutputCapture() as o:
             self._callCommand(output_file=temp.name)
 
-        self.assertTrue("Complete! Create the output file." in o.captured)
+        self.assertTrue('Complete! Create the output file.' in o.captured)
 
         with open(temp.name) as fp:
             body = fp.read()
@@ -54,24 +60,32 @@ class TestModels2rst(TestCase):
         self.assertTrue('Poll(tests.models.Poll)' in body)
         self.assertTrue('Choice(tests.models.Choice)' in body)
         self.assertTrue('Vote(tests.models.Vote)' in body)
+        self.assertTrue('* - question' in body)
+        self.assertTrue('- varchar(255)' in body)
+        self.assertTrue("unique_together : (('user', 'poll'),)" in body)
 
     def test_option_format(self):
 
         with OutputCapture() as o:
-            self._callCommand(output_format="rst")
+            self._callCommand(output_format='rst')
 
         self.assertTrue('Poll(tests.models.Poll)' in o.captured)
         self.assertTrue('Choice(tests.models.Choice)' in o.captured)
         self.assertTrue('Vote(tests.models.Vote)' in o.captured)
+        self.assertTrue('* - question' in o.captured)
+        self.assertTrue('- varchar(255)' in o.captured)
+        self.assertTrue("unique_together : (('user', 'poll'),)" in o.captured)
 
         with OutputCapture() as o:
-            self._callCommand(output_format="md")
+            self._callCommand(output_format='md')
 
         self.assertTrue('## Poll(tests.models.Poll)' in o.captured)
         self.assertTrue('## Choice(tests.models.Choice)' in o.captured)
         self.assertTrue('## Vote(tests.models.Vote)' in o.captured)
+        self.assertTrue('|question|question|varchar(255)||||||' in o.captured)
+        self.assertTrue("unique_together : (('user', 'poll'),)" in o.captured)
 
         with OutputCapture() as o:
-            self._callCommand(output_format="unknown")
+            self._callCommand(output_format='unknown')
 
-        self.assertTrue("Cannot find the output template file" in o.captured)
+        self.assertTrue('Cannot find the output template file' in o.captured)

@@ -137,6 +137,7 @@ class TestModelWrapper(TestCase):
 
         class DummmyMeta(object):
             concrete_fields = ['field1', 'field2', 'field3']
+            fields = concrete_fields
 
         class DummyModel(object):
             __module__ = 'dummy_module'

@@ -14,8 +14,6 @@
 {% for label, attr in display_fields %}|{{ field|get_attr:attr }}{% endfor %}|
 {% endfor %}
 {% endemptylineless %}
-{% endfor %}
-
 {% if model.model_options %}
 ```
 Options::
@@ -27,3 +25,4 @@ Options::
  {% endemptylineless %}
 ```
 {% endif %}
+{% endfor %}

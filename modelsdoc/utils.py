@@ -18,6 +18,13 @@ def get_model_attr(option_model, django_version):
         return getattr(option_model, 'model')
 
 
+def get_fields_attr(option_model, django_version):
+    if django_version < (1, 6):
+        return getattr(option_model, 'fields')
+    else:
+        return getattr(option_model, 'concrete_fields')
+
+
 def get_parent_model_attr(related_field, django_version):
     if django_version < (1, 8):
         return getattr(related_field, 'parent_model')

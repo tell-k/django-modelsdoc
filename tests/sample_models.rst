@@ -25,6 +25,62 @@ Poll(tests.models.Poll)
      - Index
      - Null/Blank
      - Comment
+   * - ID
+     - id
+     - integer
+     - True
+     - True
+     - 
+     - Blank
+     - 
+   * - question
+     - question
+     - varchar(255)
+     - 
+     - 
+     - 
+     - 
+     - 
+   * - description
+     - description
+     - text
+     - 
+     - 
+     - 
+     - Blank
+     - 
+   * - null field
+     - null_field
+     - varchar(255)
+     - 
+     - 
+     - 
+     - Null
+     - 
+   * - blank field
+     - blank_field
+     - varchar(255)
+     - 
+     - 
+     - 
+     - Blank
+     - 
+   * - both field
+     - both_field
+     - varchar(255)
+     - 
+     - 
+     - 
+     - Both
+     - 
+   * - index field
+     - index_field
+     - varchar(255)
+     - 
+     - 
+     - True
+     - 
+     -
 
 
 
@@ -50,6 +106,30 @@ Choice(tests.models.Choice)
      - Index
      - Null/Blank
      - Comment
+   * - ID
+     - id
+     - integer
+     - True
+     - True
+     - 
+     - Blank
+     - 
+   * - poll
+     - poll
+     - integer
+     - 
+     - 
+     - True
+     - 
+     - FK:tests.models.Poll
+   * - choice
+     - choice
+     - smallint
+     - 
+     - 
+     - 
+     - 
+     - 1:test1, 2:test2, 3:test3
 
 
 
@@ -76,6 +156,38 @@ Vote(tests.models.Vote)
      - Index
      - Null/Blank
      - Comment
+   * - ID
+     - id
+     - integer
+     - True
+     - True
+     - 
+     - Blank
+     - 
+   * - user
+     - user
+     - integer
+     - 
+     - 
+     - True
+     - 
+     - FK:django.contrib.auth.models.User
+   * - poll
+     - poll
+     - integer
+     - 
+     - 
+     - True
+     - 
+     - FK:tests.models.Poll
+   * - choice
+     - choice
+     - integer
+     - 
+     - 
+     - True
+     - 
+     - FK:tests.models.Choice
 
 
 Options::
@@ -122,6 +234,38 @@ permission(django.contrib.auth.models.Permission)
      - Index
      - Null/Blank
      - Comment
+   * - ID
+     - id
+     - integer
+     - True
+     - True
+     - 
+     - Blank
+     - 
+   * - name
+     - name
+     - varchar(50)
+     - 
+     - 
+     - 
+     - 
+     - 
+   * - content type
+     - content_type
+     - integer
+     - 
+     - 
+     - True
+     - 
+     - FK:django.contrib.contenttypes.models.ContentType
+   * - codename
+     - codename
+     - varchar(100)
+     - 
+     - 
+     - 
+     - 
+     -
 
 
 Options::
@@ -163,6 +307,22 @@ group(django.contrib.auth.models.Group)
      - Index
      - Null/Blank
      - Comment
+   * - ID
+     - id
+     - integer
+     - True
+     - True
+     - 
+     - Blank
+     - 
+   * - name
+     - name
+     - varchar(80)
+     - 
+     - True
+     - 
+     - 
+     -
 
 
 
@@ -189,6 +349,94 @@ user(django.contrib.auth.models.User)
      - Index
      - Null/Blank
      - Comment
+   * - ID
+     - id
+     - integer
+     - True
+     - True
+     - 
+     - Blank
+     - 
+   * - password
+     - password
+     - varchar(128)
+     - 
+     - 
+     - 
+     - 
+     - 
+   * - last login
+     - last_login
+     - datetime
+     - 
+     - 
+     - 
+     - 
+     - 
+   * - superuser status
+     - is_superuser
+     - bool
+     - 
+     - 
+     - 
+     - Blank
+     - 
+   * - username
+     - username
+     - varchar(30)
+     - 
+     - True
+     - 
+     - 
+     - 
+   * - first name
+     - first_name
+     - varchar(30)
+     - 
+     - 
+     - 
+     - Blank
+     - 
+   * - last name
+     - last_name
+     - varchar(30)
+     - 
+     - 
+     - 
+     - Blank
+     - 
+   * - email address
+     - email
+     - varchar(75)
+     - 
+     - 
+     - 
+     - Blank
+     - 
+   * - staff status
+     - is_staff
+     - bool
+     - 
+     - 
+     - 
+     - Blank
+     - 
+   * - active
+     - is_active
+     - bool
+     - 
+     - 
+     - 
+     - Blank
+     - 
+   * - date joined
+     - date_joined
+     - datetime
+     - 
+     - 
+     - 
+     - 
+     -
 
 
 Options::
@@ -214,11 +462,92 @@ content type(django.contrib.contenttypes.models.ContentType)
      - Index
      - Null/Blank
      - Comment
+   * - ID
+     - id
+     - integer
+     - True
+     - True
+     - 
+     - Blank
+     - 
+   * - name
+     - name
+     - varchar(100)
+     - 
+     - 
+     - 
+     - 
+     - 
+   * - app label
+     - app_label
+     - varchar(100)
+     - 
+     - 
+     - 
+     - 
+     - 
+   * - python model class name
+     - model
+     - varchar(100)
+     - 
+     - 
+     - 
+     - 
+     -
 
 
 Options::
 
  ordering : ('name',)
  unique_together : (('app_label', 'model'),)
+
+
+site(django.contrib.sites.models.Site)
+-----------------------------------------------------------------------------------------
+
+::
+
+ Site(id, domain, name)
+
+.. list-table::
+   :header-rows: 1
+
+   * - Fullname
+     - Name
+     - Type
+     - PK
+     - Unique
+     - Index
+     - Null/Blank
+     - Comment
+   * - ID
+     - id
+     - integer
+     - True
+     - True
+     - 
+     - Blank
+     - 
+   * - domain name
+     - domain
+     - varchar(100)
+     - 
+     - 
+     - 
+     - 
+     - 
+   * - display name
+     - name
+     - varchar(50)
+     - 
+     - 
+     - 
+     - 
+     -
+
+
+Options::
+
+ ordering : ('domain',)
 
 
