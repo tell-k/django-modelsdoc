@@ -9,10 +9,10 @@ Quick start
 
 1. Add "modelsdoc" to your INSTALLED_APPS setting like this::
 
- INSTALLED_APPS = (
-     ...
-     'modelsdoc',
- )
+  INSTALLED_APPS = (
+      ...
+      'modelsdoc',
+  )
 
 2. Run `python manage.py listing_models` to print model definition::
 
@@ -30,7 +30,7 @@ TODO
 License
 -----------
 
-TODO
+MIT Licence
 
 History
 -----------
