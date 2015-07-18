@@ -18,7 +18,7 @@ class TestModels2rst(TestCase):
         from django.core.management import call_command
         return call_command('listing_models', **kwargs)
 
-    def test_it(self):
+    def test_all_models(self):
         with OutputCapture() as o:
             self._callCommand()
 
@@ -88,8 +88,9 @@ class TestModels2rst(TestCase):
         self.assertTrue('## Vote(tests.models.Vote)' in o.captured)
         self.assertTrue("unique_together : (('user', 'poll'),)" in o.captured)
         self.assertTrue('Description field allows Blank' in o.captured)
+
         self.assertTrue(
-            '|Question Name|question|varchar(255)||||||' in o.captured
+            '|Question Name |question |varchar(255) | | | | | |' in o.captured
         )
 
         with OutputCapture() as o:

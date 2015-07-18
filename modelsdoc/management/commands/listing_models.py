@@ -49,11 +49,16 @@ class Command(BaseCommand):
             models = []
             for app in apps:
                 try:
-                    models += get_models(app_mod=get_app(app))
+                    models += get_models(
+                        app_mod=get_app(app),
+                        include_auto_created=constants.INCLUDE_AUTO_CREATED
+                    )
                 except ImproperlyConfigured:
                     pass
         else:
-            models = get_models(include_auto_created=True)
+            models = get_models(
+                include_auto_created=constants.INCLUDE_AUTO_CREATED
+            )
             models = sorted(
                 models,
                 key=lambda m: get_model_attr(m._meta, django.VERSION).__module__  # NOQA

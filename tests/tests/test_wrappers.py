@@ -22,6 +22,26 @@ class TestFieldWrapper(TestCase):
     def _makeOne(self, *args, **kwargs):
         return self._getTargetClass()(*args, **kwargs)
 
+    def _getDummyModel(self, model=None):
+        class DummyModel(object):
+
+            __name__ = 'DummyModel'
+
+            def __init__(self, model):
+                self._model = model
+        return DummyModel(model)
+
+    def _getDummyField(self):
+        class DummyField(object):
+
+            name = 'test_field'
+            proxy_attr = 'test'
+
+            def db_type(self, con):
+                return 'test' if con else None
+
+        return DummyField()
+
     @mock.patch('modelsdoc.wrappers.get_null_blank',
                 return_value='dummy_field')
     def test_null_blank(self, mock):
@@ -30,53 +50,27 @@ class TestFieldWrapper(TestCase):
         mock.assert_called_with('dummy_field')
 
     def test_comment(self):
-
-        class DummyModel(object):
-
-            __name__ = 'DummyModel'
-
-            def __init__(self, model):
-                self._model = model
-
-        class DummyField(object):
-
-            name = 'test_field'
-
         target = self._makeOne(
-            DummyField(),
-            DummyModel(model=DummyModel),
+            self._getDummyField(),
+            self._getDummyModel(model=self._getDummyModel()),
             'connection',
             {('DummyModel', 'test_field'): ['test1', 'test2']}
         )
         self.assertEqual('test1 test2', target.comment)
 
     def test_db_type(self):
-
-        class DummyField(object):
-
-            def db_type(self, con):
-                return 'test' if con else None
-
-        target = self._makeOne(DummyField(), 'dummy', 'connection', 'dummy')
+        target = self._makeOne(self._getDummyField(),
+                               'dummy', 'connection', 'dummy')
         self.assertEqual('test', target.db_type)
 
-        target = self._makeOne(DummyField(), 'dummy', '', 'dummy')
+        target = self._makeOne(self._getDummyField(), 'dummy', '', 'dummy')
         self.assertEqual('', target.db_type)
 
     def test_getattr(self):
-
-        class DummyField(object):
-            proxy_attr = 'test'
-
-        target = self._makeOne(DummyField(), 'dummy', 'connection', 'dummy')
+        target = self._makeOne(self._getDummyField(),
+                               'dummy', 'connection', 'dummy')
         self.assertEqual('test', target.proxy_attr)
         self.assertEqual('', target.non_exists_attr)
-
-
-class DummyAnalyizer(object):
-
-    def find_attr_docs(self):
-        return 'dummy'
 
 
 class TestModelWrapper(TestCase):
@@ -88,81 +82,77 @@ class TestModelWrapper(TestCase):
     def _makeOne(self, *args, **kwargs):
         return self._getTargetClass()(*args, **kwargs)
 
+    def _getDummyMeta(self):
+        class DummyMeta(object):
+            verbose_name = 'name'
+            model = 'TestModel'
+            concrete_model = 'TestModel'
+            concrete_fields = ['field1', 'field2', 'field3']
+            fields = concrete_fields
+
+        return DummyMeta()
+
+    def _getDummyModel(self, model=None):
+        class DummyModel(object):
+            """ TEST DOC STRING """
+
+            __module__ = 'dummy_module'
+            __name__ = 'DummyModel'
+
+            def __init__(self, model=None, meta=None):
+                self._model = model
+                self._meta = meta
+                self.proxy_attr = 'test'
+
+        return DummyModel(model, self._getDummyMeta())
+
+    def _getDummyAnalyizer(self):
+        class DummyAnalyizer(object):
+
+            def find_attr_docs(self):
+                return 'dummy'
+        return DummyAnalyizer()
+
     @mock.patch('modelsdoc.wrappers.class_to_string', return_value='dummy')
     def test_class_fullname(self, mock):
 
-        class DummyMeta(object):
-            model = 'TestModel'
-            concrete_model = 'TestModel'
-
-        class DummyModel(object):
-            _meta = DummyMeta()
-
-        target = self._makeOne(DummyModel(), 'connection')
+        target = self._makeOne(self._getDummyModel(), 'connection')
         self.assertEqual('dummy', target.class_fullname)
         mock.assert_called_with('TestModel')
 
     def test_class_name(self):
-
-        class DummyModel(object):
-            __name__ = 'DummyModel'
-
-            def __init__(self, model=None):
-                self._model = model
-
-        target = self._makeOne(DummyModel(DummyModel()), 'connection')
+        target = self._makeOne(
+            self._getDummyModel(self._getDummyModel()),
+            'connection'
+        )
         self.assertEqual('DummyModel', target.class_name)
 
     def test_doc(self):
-        class DummyModel(object):
-            """ TEST DOC STRING """
-
-        target = self._makeOne(DummyModel(), 'connection')
+        target = self._makeOne(self._getDummyModel(), 'connection')
         self.assertEqual(' TEST DOC STRING ', target.doc)
 
     def test_name(self):
-
-        class DummyMeta(object):
-            verbose_name = 'name'
-
-        class DummyModel(object):
-            _meta = DummyMeta()
-
-        target = self._makeOne(DummyModel(), 'connection')
+        target = self._makeOne(self._getDummyModel(), 'connection')
         self.assertEqual('name', target.name)
 
-    @mock.patch('modelsdoc.wrappers.ModuleAnalyzer.for_module',
-                return_value=DummyAnalyizer())
-    def test_fields(self, mock):
+    def test_fields(self):
 
-        class DummmyMeta(object):
-            concrete_fields = ['field1', 'field2', 'field3']
-            fields = concrete_fields
+        with mock.patch('modelsdoc.wrappers.ModuleAnalyzer.for_module',
+                        return_value=self._getDummyAnalyizer()) as m:
 
-        class DummyModel(object):
-            __module__ = 'dummy_module'
-            _meta = DummmyMeta()
+            target = self._makeOne(self._getDummyModel(), 'connection')
+            self.assertEqual(3, len(target.fields))
+            m.assert_called_once_with('dummy_module')
 
-        target = self._makeOne(DummyModel(), 'connection')
-        self.assertEqual(3, len(target.fields))
-        mock.assert_called_once_with('dummy_module')
+    def test_attrdocs(self):
+        with mock.patch('modelsdoc.wrappers.ModuleAnalyzer.for_module',
+                        return_value=self._getDummyAnalyizer()) as m:
 
-    @mock.patch('modelsdoc.wrappers.ModuleAnalyzer.for_module',
-                return_value=DummyAnalyizer())
-    def test_attrdocs(self, mock):
-
-        class DummyModel(object):
-            __module__ = 'dummy_module'
-
-        target = self._makeOne(DummyModel(), 'connection')
-        self.assertEqual('dummy', target.attrdocs)
-        mock.assert_called_once_with('dummy_module')
+            target = self._makeOne(self._getDummyModel(), 'connection')
+            self.assertEqual('dummy', target.attrdocs)
+            m.assert_called_once_with('dummy_module')
 
     def test_getattr(self):
-
-        class DummyModel(object):
-            proxy_attr = 'test'
-
-        target = self._makeOne(DummyModel(), 'connection')
+        target = self._makeOne(self._getDummyModel(), 'connection')
         self.assertEqual('test', target.proxy_attr)
         self.assertEqual('', target.non_exists_attr)

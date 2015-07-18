@@ -24,6 +24,7 @@ DEFAULT_OUTPUT_TEMPLATE = 'modelsdoc/models'
 DEFAULT_OUTPUT_FORMAT = 'rst'
 DEFAULT_MODEL_WRAPPER = 'modelsdoc.wrappers.ModelWrapper'
 DEFAULT_FIELD_WRAPPER = 'modelsdoc.wrappers.FieldWrapper'
+DEFAULT_INCLUDE_AUTO_CREATED = True
 
 DEFAULT_MODEL_OPTIONS = (
     'unique_together',
@@ -38,7 +39,7 @@ DEFAULT_MODEL_OPTIONS = (
     'select_on_save',
     'default_permissions',
     'default_related_name'
-    # 'auto_created',
+    'auto_created',
     # 'managed',
     # 'proxy',
     # 'verbose_name',
@@ -50,6 +51,8 @@ DEFAULT_MODEL_OPTIONS = (
 
 APPS = getattr(settings, 'MODELSDOC_APPS', [])
 
+INCLUDE_AUTO_CREATED = getattr(settings, 'MODELSDOC_INCLUDE_AUTO_CREATED',
+                               DEFAULT_INCLUDE_AUTO_CREATED)
 DISPLAY_FIELDS = getattr(settings, 'MODELSDOC_DISPLAY_FIELDS',
                          DEFAULT_DISPLAY_FIELDS)
 OUTPUT_TEMPLATE = getattr(settings, 'MODELSDOC_OUTPUT_TEMPLATE',

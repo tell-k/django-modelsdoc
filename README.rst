@@ -113,6 +113,7 @@ Other settings
  MODELSDOC_OUTPUT_FORMAT = 'rst' # default format
  MODELSDOC_MODEL_WRAPPER = 'modelsdoc.wrappers.ModelWrapper'
  MODELSDOC_FIELD_WRAPPER = 'modelsdoc.wrappers.FieldWrapper'
+ MODELSDOC_INCLUDE_AUTO_CREATED = True
 
 
 Python and Django Support

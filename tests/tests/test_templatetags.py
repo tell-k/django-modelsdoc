@@ -30,7 +30,7 @@ test3
         t = Template(self._getTargetTags())
         return t.render(Context())
 
-    def test_it(self):
+    def test_remove_emptyline(self):
         self.assertEqual('\n\ntest1\ntest2\ntest3\n', self._callFUT())
 
 
@@ -43,7 +43,7 @@ class TestGetAttr(TestCase):
         t = Template(self._getTargetTags())
         return t.render(Context({'obj': obj, 'attr_name': attr_name}))
 
-    def test_it(self):
+    def test_get_attr(self):
 
         class Dummy(object):
 
