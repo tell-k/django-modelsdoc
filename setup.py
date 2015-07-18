@@ -31,8 +31,10 @@ class DjangoTest(TestCommand):
         if django.VERSION >= (1, 7):
             django.setup()
 
-        runner = get_runner(settings)(verbosity=1,
-                                      interactive=False, failfast=False)
+        runner = get_runner(settings)(
+            verbosity=1,
+            interactive=False, failfast=False
+        )
         errno = runner.run_tests(['tests'])
         sys.exit(errno)
 
@@ -84,7 +86,7 @@ classifiers = [
 setup(
     name='django-modelsdoc',
     version=version,
-    packages=find_packages(exclude=['tests']),
+    packages=find_packages(exclude=['tests', 'tests.*']),
     include_package_data=True,
     license='MIT',
     keywords='django models document documentation',
@@ -94,7 +96,7 @@ setup(
     install_requires=install_requires,
     tests_require=tests_require,
     cmdclass={'test': DjangoTest},
-    author='telll-k',
+    author='tell-k',
     author_email='ffk2005@gmail.com',
     classifiers=classifiers,
 )
