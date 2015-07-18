@@ -136,6 +136,11 @@ MIT Licence. See the LICENSE file for specific terms.
 History
 =======
 
+0.1.3(Jul 19, 2015)
+---------------------
+* Fixed bug. install test code. 
+* Add new option "MODELSDOC_INCLUDE_AUTO_CREATED"
+
 0.1.2(Jun 21, 2015)
 ---------------------
 * Bug fixed. Not include output templates.
