@@ -24,6 +24,17 @@ class Poll(models.Model):
         verbose_name = 'Poll'
 
 
+class Genre(models.Model):
+    """ Genre
+
+    * Choice has genre
+    """
+    name = models.CharField('Genre name', max_length=255)
+
+    class Meta:
+        verbose_name = 'Genre'
+
+
 class Choice(models.Model):
     """ Choice
 
@@ -40,6 +51,8 @@ class Choice(models.Model):
     poll = models.ForeignKey(Poll, verbose_name='Poll')
     choice = models.SmallIntegerField('Choice',
                                       max_length=255, choices=CHOICES)
+
+    genres = models.ManyToManyField(Genre, verbose_name='Genre')
 
     class Meta:
         verbose_name = 'Choice'

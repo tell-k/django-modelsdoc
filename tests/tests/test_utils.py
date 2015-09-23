@@ -43,8 +43,9 @@ class TestGetFieldsAttr(unittest.TestCase):
     def _getDummyMetaOption(self):
         class DummyMetaOption(object):
 
-            concrete_fields = 'concrete_fields'
-            fields = 'fields'
+            concrete_fields = ('concrete_fields',)
+            fields = ('fields',)
+            many_to_many = ('many2many',)
 
         return DummyMetaOption()
 
@@ -54,13 +55,13 @@ class TestGetFieldsAttr(unittest.TestCase):
 
     def test_django_ver16_over(self):
         self.assertEqual(
-            'concrete_fields',
+            ['concrete_fields', 'many2many'],
             self._callFUT(self._getDummyMetaOption(), (1, 6))
         )
 
     def test_django_ver15(self):
         self.assertEqual(
-            'fields',
+            ['fields', 'many2many'],
             self._callFUT(self._getDummyMetaOption(), (1, 5))
         )
 
@@ -158,10 +159,7 @@ class TestGetForeignkey(TestCase):
 
     def _getTargetField(self, field_name):
         from tests.models import Choice
-        for f in Choice._meta.fields:
-            if f.name != field_name:
-                continue
-            return f
+        return Choice._meta.get_field(field_name)
 
     def test_is_foreignkey(self):
         self.assertEqual(
@@ -173,6 +171,12 @@ class TestGetForeignkey(TestCase):
         self.assertEqual(
             '',
             self._callFUT(self._getTargetField('choice'))
+        )
+
+    def test_many_to_many_field(self):
+        self.assertEqual(
+            'M2M:tests.models.Genre (through: tests.models.Choice_genres)',
+            self._callFUT(self._getTargetField('genres'))
         )
 
 

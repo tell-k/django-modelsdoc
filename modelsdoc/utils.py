@@ -20,9 +20,12 @@ def get_model_attr(option_model, django_version):
 
 def get_fields_attr(option_model, django_version):
     if django_version < (1, 6):
-        return getattr(option_model, 'fields')
+        fields = list(getattr(option_model, 'fields'))
     else:
-        return getattr(option_model, 'concrete_fields')
+        fields = list(getattr(option_model, 'concrete_fields'))
+    for f in getattr(option_model, 'many_to_many', []):
+        fields.append(f)
+    return fields
 
 
 def get_parent_model_attr(related_field, django_version):
@@ -49,8 +52,18 @@ def get_null_blank(field):
 def get_foreignkey(field):
     if not getattr(field, 'related', None):
         return ''
-    return 'FK:' + class_to_string(
-        get_parent_model_attr(field.related, django.VERSION)
+
+    label = 'FK:'
+    through = ''
+    if hasattr(field, 'm2m_column_name'):
+        label = 'M2M:'
+        through = ' (through: {})'.format(
+            class_to_string(field.rel.through))
+
+    return '{}{}{}'.format(
+        label,
+        class_to_string(get_parent_model_attr(field.related, django.VERSION)),
+        through
     )
 
 
