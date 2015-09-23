@@ -136,6 +136,11 @@ MIT Licence. See the LICENSE file for specific terms.
 History
 =======
 
+0.1.4(Sep 23, 2015)
+---------------------
+* Fixed bug. When print models, linebreak is ignored.
+* Add ManyToManyField's info on "listing_models" results.
+
 0.1.3(Jul 19, 2015)
 ---------------------
 * Fixed bug. install test code. 
