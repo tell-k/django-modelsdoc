@@ -60,7 +60,7 @@ tests_require = [
     'mock',
     'testfixtures',
     'six',
-    'pbr<1.8',
+    'pbr<1.4',
 ]
 
 classifiers = [
