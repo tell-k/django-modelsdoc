@@ -1,4 +1,5 @@
 {% load modelsdoc_tags %}
+{% autoescape off %}
 
 {% for model in models %}
 ## {{ model.name }}({{ model.class_fullname }})
@@ -25,3 +26,4 @@ Options
 ```
 {% endif %}
 {% endfor %}
+{% endautoescape %}

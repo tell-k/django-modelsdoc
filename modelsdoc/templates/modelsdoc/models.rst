@@ -1,4 +1,5 @@
 {% load modelsdoc_tags %}
+{% autoescape off %}
 
 .. contents::
    :local:
@@ -36,3 +37,4 @@ Options::
  {% endemptylineless %}
 {% endif %}
 {% endfor %}
+{% endautoescape %}

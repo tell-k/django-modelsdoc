@@ -89,4 +89,4 @@ class Command(BaseCommand):
                 fp.write(rendered.encode('utf-8', errors='replace'))
             print('Complete! Create the output file. {}'.format(output_file))
         else:
-            print(rendered.encode('utf-8', errors='replace'))
+            print(rendered)
