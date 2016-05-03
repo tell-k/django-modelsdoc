@@ -1,24 +1,31 @@
 language: python
-python: 3.4
+python: 3.5
 env:
   matrix:
    - TOXENV=py27-django1.5
    - TOXENV=py27-django1.6
    - TOXENV=py27-django1.7
    - TOXENV=py27-django1.8
+   - TOXENV=py27-django1.9
    - TOXENV=pypy-django1.5
    - TOXENV=pypy-django1.6
    - TOXENV=pypy-django1.7
    - TOXENV=pypy-django1.8
+   - TOXENV=pypy-django1.9
    - TOXENV=py33-django1.7
    - TOXENV=py33-django1.8
+   - TOXENV=py33-django1.9
    - TOXENV=py34-django1.7
    - TOXENV=py34-django1.8
+   - TOXENV=py34-django1.9
+   # - TOXENV=py35-django1.7 do not use this combinatiion.
+   - TOXENV=py35-django1.8
+   - TOXENV=py35-django1.9
    - TOXENV=flake8
 
 install:
   - pip install tox
-  - if test "$TOXENV" = py34-django1.8; then pip install coveralls ; fi
+  - if test "$TOXENV" = py35-django1.9; then pip install coveralls ; fi
 script: tox
 after_script:
-  - if test "$TOXENV" = py34-django1.8; then coveralls ; fi
+  - if test "$TOXENV" = py35-django1.9; then coveralls ; fi

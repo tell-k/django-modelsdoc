@@ -8,7 +8,7 @@
 """
 from __future__ import division, print_function, absolute_import, unicode_literals  # NOQA
 
-from django.template.base import Library, Node
+from django.template import Library, Node
 
 register = Library()
 

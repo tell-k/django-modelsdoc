@@ -11,6 +11,27 @@ from __future__ import division, print_function, absolute_import, unicode_litera
 import django
 
 
+def get_models(include_auto_created, django_version, appname=None):
+    if django_version < (1, 7):  # pragma: no cover
+        from django.db.models import get_app, get_models
+        if appname:
+            return get_models(
+                app_mod=get_app(appname),
+                include_auto_created=include_auto_created
+            )
+        else:
+            return get_models(
+                include_auto_created=include_auto_created
+            )
+    else:
+        from django.apps import apps
+        if appname:
+            app = apps.get_app_config(appname)
+            return app.get_models(include_auto_created=include_auto_created)
+        else:
+            return apps.get_models(include_auto_created=include_auto_created)
+
+
 def get_model_attr(option_model, django_version):
     if django_version < (1, 6):
         return getattr(option_model, 'concrete_model')

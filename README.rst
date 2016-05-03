@@ -120,13 +120,15 @@ Python and Django Support
 =========================
 
 .. csv-table::
-   :widths: 10, 10, 10, 10, 10
+   :widths: 10, 10, 10, 10, 10, 10
 
-   "　", "Django.1.5", "Django1.6", "Django1.7", "Django1.8"
-   "Python 2.7","◯","◯","◯","◯"
-   "PyPy","◯","◯","◯","◯"
-   "Python 3.3","","","◯","◯"
-   "Python 3.4","","","◯","◯"
+   "　", "Django.1.5", "Django1.6", "Django1.7", "Django1.8", "Django1.9"
+   "Python 2.7","◯","◯","◯","◯","◯"
+   "PyPy","◯","◯","◯","◯","◯"
+   "Python 3.3","","","◯","◯","◯"
+   "Python 3.4","","","◯","◯","◯"
+   "Python 3.5","","","","◯","◯"
+
 
 License
 =======
@@ -135,6 +137,10 @@ MIT Licence. See the LICENSE file for specific terms.
 
 History
 =======
+
+0.1.5(May 4, 2016)
+---------------------
+* Add Support Python3.5 and Django1.9
 
 0.1.4(Sep 23, 2015)
 ---------------------

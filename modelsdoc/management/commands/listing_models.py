@@ -16,12 +16,12 @@ import django
 from django.core.management.base import BaseCommand
 from django.core.exceptions import ImproperlyConfigured
 from django.db import connection
-from django.db.models import get_models, get_app
+
 from django.template.loader import render_to_string
 from django.template import TemplateDoesNotExist
 
 from modelsdoc import constants
-from modelsdoc.utils import import_class, get_model_attr
+from modelsdoc.utils import import_class, get_model_attr, get_models
 
 
 logger = logging.getLogger(__name__)
@@ -50,15 +50,14 @@ class Command(BaseCommand):
             for app in apps:
                 try:
                     models += get_models(
-                        app_mod=get_app(app),
-                        include_auto_created=constants.INCLUDE_AUTO_CREATED
+                        constants.INCLUDE_AUTO_CREATED,
+                        django.VERSION,
+                        app
                     )
-                except ImproperlyConfigured:
+                except (ImproperlyConfigured, LookupError):
                     pass
         else:
-            models = get_models(
-                include_auto_created=constants.INCLUDE_AUTO_CREATED
-            )
+            models = get_models(constants.INCLUDE_AUTO_CREATED, django.VERSION)
             models = sorted(
                 models,
                 key=lambda m: get_model_attr(m._meta, django.VERSION).__module__  # NOQA
