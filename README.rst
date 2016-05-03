@@ -125,9 +125,10 @@ Python and Django Support
    "　", "Django.1.5", "Django1.6", "Django1.7", "Django1.8", "Django1.9"
    "Python 2.7","◯","◯","◯","◯","◯"
    "PyPy","◯","◯","◯","◯","◯"
-   "Python 3.3","","","◯","◯","◯"
+   "Python 3.3","","","◯","◯",""
    "Python 3.4","","","◯","◯","◯"
    "Python 3.5","","","","◯","◯"
+
 
 
 License
