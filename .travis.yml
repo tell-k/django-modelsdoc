@@ -14,11 +14,11 @@ env:
    - TOXENV=pypy-django1.9
    - TOXENV=py33-django1.7
    - TOXENV=py33-django1.8
-   - TOXENV=py33-django1.9
+   # - TOXENV=py33-django1.9 this version does not support py33.
    - TOXENV=py34-django1.7
    - TOXENV=py34-django1.8
    - TOXENV=py34-django1.9
-   # - TOXENV=py35-django1.7 do not use this combinatiion.
+   # - TOXENV=py35-django1.7 do not use this combination.
    - TOXENV=py35-django1.8
    - TOXENV=py35-django1.9
    - TOXENV=flake8
