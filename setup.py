@@ -8,9 +8,6 @@ from setuptools.command.test import test as TestCommand
 
 class DjangoTest(TestCommand):
 
-    def initialize_options(self):
-        TestCommand.initialize_options(self)
-
     def finalize_options(self):
         TestCommand.finalize_options(self)
         self.test_args = []
