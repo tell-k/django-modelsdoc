@@ -1,32 +1,27 @@
 language: python
 python: 3.5
-before_script:
-   - echo $DB_URL
-   - echo $TOXENV
 env:
   matrix:
-   - [TOXENV=py27-django1.5, DB_URL='a']
-   - [TOXENV=py27-django1.5, DB_URL='b']
-   - [TOXENV=py27-django1.5, DB_URL='c']
-#   - TOXENV=py27-django1.6
-#   - TOXENV=py27-django1.7
-#   - TOXENV=py27-django1.8
-#   - TOXENV=py27-django1.9
-#   - TOXENV=pypy-django1.5
-#   - TOXENV=pypy-django1.6
-#   - TOXENV=pypy-django1.7
-#   - TOXENV=pypy-django1.8
-#   - TOXENV=pypy-django1.9
-#   - TOXENV=py33-django1.7
-#   - TOXENV=py33-django1.8
-#   # - TOXENV=py33-django1.9 this version does not support py33.
-#   - TOXENV=py34-django1.7
-#   - TOXENV=py34-django1.8
-#   - TOXENV=py34-django1.9
-#   # - TOXENV=py35-django1.7 do not use this combination.
-#   - TOXENV=py35-django1.8
-#   - TOXENV=py35-django1.9
-#   - TOXENV=flake8
+   - TOXENV=py27-django1.5
+   - TOXENV=py27-django1.6
+   - TOXENV=py27-django1.7
+   - TOXENV=py27-django1.8
+   - TOXENV=py27-django1.9
+   - TOXENV=pypy-django1.5
+   - TOXENV=pypy-django1.6
+   - TOXENV=pypy-django1.7
+   - TOXENV=pypy-django1.8
+   - TOXENV=pypy-django1.9
+   - TOXENV=py33-django1.7
+   - TOXENV=py33-django1.8
+   # - TOXENV=py33-django1.9 this version does not support py33.
+   - TOXENV=py34-django1.7
+   - TOXENV=py34-django1.8
+   - TOXENV=py34-django1.9
+   # - TOXENV=py35-django1.7 do not use this combination.
+   - TOXENV=py35-django1.8
+   - TOXENV=py35-django1.9
+   - TOXENV=flake8
 
 install:
   - pip install tox
