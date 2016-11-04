@@ -1,7 +1,26 @@
 from django import VERSION
 
 DEBUG = False
-TEMPLATE_DEBUG = False
+
+if VERSION < (1, 10):
+    TEMPLATE_DEBUG = False
+else:
+    TEMPLATES = [
+        {
+            'BACKEND': 'django.template.backends.django.DjangoTemplates',
+            'DIRS': [],
+            'APP_DIRS': True,
+            'OPTIONS': {
+                'context_processors': [
+                    'django.template.context_processors.debug',
+                    'django.template.context_processors.request',
+                    'django.contrib.auth.context_processors.auth',
+                    'django.contrib.messages.context_processors.messages',
+                ],
+            },
+        },
+    ]
+
 
 # for django 1.5
 ROOT_URLCONF = 'urls'
