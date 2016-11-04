@@ -29,7 +29,7 @@ env:
 
 install:
   - pip install tox
-  - if test "$TOXENV" = py35-django1.10; then pip install coveralls ; fi
+  - if test "$TOXENV" = py35-django110; then pip install coveralls ; fi
 script: tox
 after_script:
-  - if test "$TOXENV" = py35-django1.10; then coveralls ; fi
+  - if test "$TOXENV" = py35-django110; then coveralls ; fi
