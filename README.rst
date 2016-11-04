@@ -177,10 +177,6 @@ History
     :target: https://requires.io/github/tell-k/django-modelsdoc/requirements/?branch=master
     :alt: requirements status
 
-.. |downloads| image:: https://img.shields.io/pypi/dm/django-modelsdoc.svg
-    :target: http://pypi.python.org/pypi/django-modelsdoc/
-    :alt: downloads
-
 .. |version| image:: https://img.shields.io/pypi/v/django-modelsdoc.svg
     :target: http://pypi.python.org/pypi/django-modelsdoc/
     :alt: latest version
