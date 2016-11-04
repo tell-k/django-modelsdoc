@@ -32,15 +32,33 @@ class Command(BaseCommand):
 
     help = 'Listing your model definition. You can pass specify app name.'
 
-    option_list = BaseCommand.option_list + (
-        make_option('-a', '--app', dest='app',
-                    help='Target only a specific app', default=None),
-        make_option('-o', '--output', dest='output_file',
-                    help='Output file', default=None),
-        make_option('-f', '--format',
-                    dest='output_format', help='Output format(rst/md)',
-                    default=constants.OUTPUT_FORMAT)
-    )
+    option_args = [
+        dict(
+            args=['-a', '--app'],
+            kwargs=dict(dest='app', help='Target only a specific app', default=None)
+        ),
+        dict(
+            args=['-o', '--output'],
+            kwargs=dict(dest='output_file', help='Output file', default=None),
+        ),
+        dict(
+            args=['-f', '--format'],
+            kwargs=dict(dest='output_format', help='Output format(rst/md)',
+                        default=constants.OUTPUT_FORMAT)
+        ),
+    ]
+
+    def __init__(self):
+        if django.VERSION < (1, 8):  # pragma: no cover
+            options = tuple([make_option(*o['args'], **o['kwargs']) for o in self.option_args])
+            Command.option_list = BaseCommand.option_list + options
+        else:
+            def add_arguments(self, parser):
+                for o in self.option_args:
+                    parser.add_argument(*o['args'], **o['kwargs'])
+            Command.add_arguments = add_arguments
+
+        super(Command, self).__init__()
 
     def handle(self, app, output_file, output_format, *args, **options):
 

@@ -70,8 +70,16 @@ def get_null_blank(field):
     return ''
 
 
+def get_related_field(field, django_version):
+    if django_version < (1, 9):
+        return getattr(field, 'related', None)
+    else:
+        return getattr(field, 'remote_field', None)
+
+
 def get_foreignkey(field):
-    if not getattr(field, 'related', None):
+    related_field = get_related_field(field, django.VERSION)
+    if not related_field:
         return ''
 
     label = 'FK:'
@@ -83,7 +91,7 @@ def get_foreignkey(field):
 
     return '{}{}{}'.format(
         label,
-        class_to_string(get_parent_model_attr(field.related, django.VERSION)),
+        class_to_string(get_parent_model_attr(related_field, django.VERSION)),
         through
     )
 

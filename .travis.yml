@@ -2,30 +2,34 @@ language: python
 python: 3.5
 env:
   matrix:
-   - TOXENV=py27-django1.5
-   - TOXENV=py27-django1.6
-   - TOXENV=py27-django1.7
-   - TOXENV=py27-django1.8
-   - TOXENV=py27-django1.9
-   - TOXENV=pypy-django1.5
-   - TOXENV=pypy-django1.6
-   - TOXENV=pypy-django1.7
-   - TOXENV=pypy-django1.8
-   - TOXENV=pypy-django1.9
-   - TOXENV=py33-django1.7
-   - TOXENV=py33-django1.8
+   - TOXENV=py27-django15
+   - TOXENV=py27-django16
+   - TOXENV=py27-django17
+   - TOXENV=py27-django18
+   - TOXENV=py27-django19
+   - TOXENV=py27-django110
+   - TOXENV=pypy-django15
+   - TOXENV=pypy-django16
+   - TOXENV=pypy-django17
+   - TOXENV=pypy-django18
+   - TOXENV=pypy-django19
+   - TOXENV=pypy-django110
+   - TOXENV=py33-django17
+   - TOXENV=py33-django18
    # - TOXENV=py33-django1.9 this version does not support py33.
-   - TOXENV=py34-django1.7
-   - TOXENV=py34-django1.8
-   - TOXENV=py34-django1.9
-   # - TOXENV=py35-django1.7 do not use this combination.
-   - TOXENV=py35-django1.8
-   - TOXENV=py35-django1.9
+   - TOXENV=py34-django17
+   - TOXENV=py34-django18
+   - TOXENV=py34-django19
+   # - TOXENV=py35-django1.7 do not use this combination. 
+   #   see also http://stackoverflow.com/q/34827566
+   - TOXENV=py35-django18
+   - TOXENV=py35-django19
+   - TOXENV=py35-django110
    - TOXENV=flake8
 
 install:
   - pip install tox
-  - if test "$TOXENV" = py35-django1.9; then pip install coveralls ; fi
+  - if test "$TOXENV" = py35-django1.10; then pip install coveralls ; fi
 script: tox
 after_script:
-  - if test "$TOXENV" = py35-django1.9; then coveralls ; fi
+  - if test "$TOXENV" = py35-django1.10; then coveralls ; fi

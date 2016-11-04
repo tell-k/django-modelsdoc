@@ -1,6 +1,6 @@
 Create models definitions document from your django project. This project help the documentation related to Django models.
 
-|travis| |coveralls| |downloads| |version| |license| |requires|
+|travis| |coveralls| |version| |license| |requires|
 
 Quick start
 =============
@@ -120,14 +120,14 @@ Python and Django Support
 =========================
 
 .. csv-table::
-   :widths: 10, 10, 10, 10, 10, 10
+   :widths: 10, 10, 10, 10, 10, 10, 10
 
-   "　", "Django.1.5", "Django1.6", "Django1.7", "Django1.8", "Django1.9"
-   "Python 2.7","◯","◯","◯","◯","◯"
-   "PyPy","◯","◯","◯","◯","◯"
-   "Python 3.3","","","◯","◯",""
-   "Python 3.4","","","◯","◯","◯"
-   "Python 3.5","","","","◯","◯"
+   "　", "Django.1.5", "Django1.6", "Django1.7", "Django1.8", "Django1.9", "Django1.10"
+   "Python 2.7","◯","◯","◯","◯","◯","◯"
+   "PyPy","◯","◯","◯","◯","◯","◯"
+   "Python 3.3","","","◯","◯","",""
+   "Python 3.4","","","◯","◯","◯","◯"
+   "Python 3.5","","","","◯","◯","◯"
 
 
 
@@ -138,6 +138,10 @@ MIT Licence. See the LICENSE file for specific terms.
 
 History
 =======
+
+0.1.6(Nov 4, 2016)
+---------------------
+* Add Support Django1.10
 
 0.1.5(May 4, 2016)
 ---------------------

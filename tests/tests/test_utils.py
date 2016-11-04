@@ -225,3 +225,30 @@ class TestImportClass(unittest.TestCase):
     def test_raise_import_error(self):
         with self.assertRaises(ImportError):
             self._callFUT('modelsdoc.nonexists.Hoge')
+
+
+class TestGetRelatedField(unittest.TestCase):
+
+    def _callFUT(self, field, django_version):
+        from modelsdoc.utils import get_related_field
+        return get_related_field(field, django_version)
+
+    def _getDummyField(self):
+        class DummyField(object):
+
+            related = 'related'
+            remote_field = 'remote_field'
+
+        return DummyField()
+
+    def test_django_ver18_lower(self):
+        self.assertEqual(
+            'related',
+            self._callFUT(self._getDummyField(), (1, 8))
+        )
+
+    def test_django_ver19(self):
+        self.assertEqual(
+            'remote_field',
+            self._callFUT(self._getDummyField(), (1, 9))
+        )
