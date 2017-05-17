@@ -49,8 +49,7 @@ class Choice(models.Model):
     )
 
     poll = models.ForeignKey(Poll, verbose_name='Poll')
-    choice = models.SmallIntegerField('Choice',
-                                      max_length=255, choices=CHOICES)
+    choice = models.SmallIntegerField('Choice', choices=CHOICES)
 
     genres = models.ManyToManyField(Genre, verbose_name='Genre')
 

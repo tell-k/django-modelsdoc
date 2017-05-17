@@ -23,7 +23,9 @@ else:
 
 
 # for django 1.5
-ROOT_URLCONF = 'urls'
+if VERSION < (1, 6):
+    ROOT_URLCONF = 'urls'
+
 SITE_ID = 1
 
 INSTALLED_APPS = (
