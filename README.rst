@@ -122,13 +122,13 @@ Python and Django Support
 .. csv-table::
    :widths: 10, 10, 10, 10, 10, 10, 10
 
-   "　", "Django.1.5", "Django1.6", "Django1.7", "Django1.8", "Django1.9", "Django1.10"
+   "　", "Django.1.5", "Django1.6", "Django1.7", "Django1.8", "Django1.9", "Django1.10",  "Django1.11"
    "Python 2.7","◯","◯","◯","◯","◯","◯"
-   "PyPy","◯","◯","◯","◯","◯","◯"
-   "Python 3.3","","","◯","◯","",""
-   "Python 3.4","","","◯","◯","◯","◯"
-   "Python 3.5","","","","◯","◯","◯"
-
+   "PyPy","◯","◯","◯","◯","◯","◯","◯"
+   "Python 3.3","","","◯","◯","","",""
+   "Python 3.4","","","◯","◯","◯","◯","◯"
+   "Python 3.5","","","","◯","◯","◯","◯"
+   "Python 3.6","","","","◯","◯","◯","◯"
 
 
 License
@@ -138,6 +138,10 @@ MIT Licence. See the LICENSE file for specific terms.
 
 History
 =======
+
+0.1.7(May 17, 2017)
+---------------------
+* Add Support Django1.11 and Python 3.6
 
 0.1.6(Nov 4, 2016)
 ---------------------
@@ -154,7 +158,7 @@ History
 
 0.1.3(Jul 19, 2015)
 ---------------------
-* Fixed bug. install test code. 
+* Fixed bug. install test code.
 * Add new option "MODELSDOC_INCLUDE_AUTO_CREATED"
 
 0.1.2(Jun 21, 2015)
