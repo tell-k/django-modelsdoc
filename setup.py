@@ -54,8 +54,7 @@ install_requires = [
 ]
 
 tests_require = [
-    # 'pbr<1.4',
-    'mock',
+    'pbr<1.4',
     'testfixtures',
     'six',
 ]
