@@ -54,10 +54,10 @@ install_requires = [
 ]
 
 tests_require = [
-    'pbr<1.4',
-    'typing',
+    'mock',
     'testfixtures',
     'six',
+    'pbr<1.4',
 ]
 
 classifiers = [
