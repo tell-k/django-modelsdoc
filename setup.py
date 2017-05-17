@@ -55,6 +55,7 @@ install_requires = [
 
 tests_require = [
     'pbr<1.4',
+    'typing<3.6.1',
     'testfixtures',
     'six',
 ]
