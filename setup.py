@@ -57,7 +57,8 @@ tests_require = [
     'mock',
     'testfixtures',
     'six',
-    'pbr<1.4',
+    # 'pbr<1.4',
+    'pbr',
 ]
 
 classifiers = [
@@ -73,6 +74,7 @@ classifiers = [
     'Framework :: Django :: 1.8',
     'Framework :: Django :: 1.9',
     'Framework :: Django :: 1.10',
+    'Framework :: Django :: 1.11',
     'Programming Language :: Python',
     'Programming Language :: Python :: 2',
     'Programming Language :: Python :: 2.7',
@@ -80,6 +82,7 @@ classifiers = [
     'Programming Language :: Python :: 3.3',
     'Programming Language :: Python :: 3.4',
     'Programming Language :: Python :: 3.5',
+    'Programming Language :: Python :: 3.6',
     'Topic :: Documentation',
     'Topic :: Documentation :: Sphinx',
 ]
