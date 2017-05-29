@@ -120,7 +120,7 @@ Python and Django Support
 =========================
 
 .. csv-table::
-   :widths: 10, 10, 10, 10, 10, 10, 10
+   :widths: 10, 10, 10, 10, 10, 10, 10, 10
 
    "　", "Django.1.5", "Django1.6", "Django1.7", "Django1.8", "Django1.9", "Django1.10",  "Django1.11"
    "Python 2.7","◯","◯","◯","◯","◯","◯"
