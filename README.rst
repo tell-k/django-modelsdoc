@@ -139,7 +139,7 @@ MIT Licence. See the LICENSE file for specific terms.
 History
 =======
 
-0.1.7(May 17, 2017)
+0.1.7(May 29, 2017)
 ---------------------
 * Add Support Django1.11 and Python 3.6
 
