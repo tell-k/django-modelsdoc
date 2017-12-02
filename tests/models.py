@@ -48,7 +48,8 @@ class Choice(models.Model):
         (3, 'test3'),
     )
 
-    poll = models.ForeignKey(Poll, verbose_name='Poll')
+    poll = models.ForeignKey(Poll, verbose_name='Poll',
+                             on_delete=models.CASCADE)
     choice = models.SmallIntegerField('Choice', choices=CHOICES)
 
     genres = models.ManyToManyField(Genre, verbose_name='Genre')
@@ -65,9 +66,12 @@ class Vote(models.Model):
     * Vote has choice reference
     """
 
-    user = models.ForeignKey(User, verbose_name='Voted User')
-    poll = models.ForeignKey(Poll, verbose_name='Voted Poll')
-    choice = models.ForeignKey(Choice, verbose_name='Voted Choice')
+    user = models.ForeignKey(User, verbose_name='Voted User',
+                             on_delete=models.CASCADE)
+    poll = models.ForeignKey(Poll, verbose_name='Voted Poll',
+                             on_delete=models.CASCADE)
+    choice = models.ForeignKey(Choice, verbose_name='Voted Choice',
+                               on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = 'Vote'

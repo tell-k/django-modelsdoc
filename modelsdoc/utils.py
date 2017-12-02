@@ -77,6 +77,13 @@ def get_related_field(field, django_version):
         return getattr(field, 'remote_field', None)
 
 
+def get_through(field, django_version):
+    if django_version < (1, 9):
+        return field.rel.through
+    else:
+        return field.remote_field.through
+
+
 def get_foreignkey(field):
     related_field = get_related_field(field, django.VERSION)
     if not related_field:
@@ -87,7 +94,7 @@ def get_foreignkey(field):
     if hasattr(field, 'm2m_column_name'):
         label = 'M2M:'
         through = ' (through: {})'.format(
-            class_to_string(field.rel.through))
+            class_to_string(get_through(field, django.VERSION)))
 
     return '{}{}{}'.format(
         label,
