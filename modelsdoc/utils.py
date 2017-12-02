@@ -87,7 +87,7 @@ def get_foreignkey(field):
     if hasattr(field, 'm2m_column_name'):
         label = 'M2M:'
         through = ' (through: {})'.format(
-            class_to_string(field.rel.through))
+            class_to_string(related_field.through))
 
     return '{}{}{}'.format(
         label,
