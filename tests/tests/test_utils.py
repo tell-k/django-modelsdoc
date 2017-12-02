@@ -252,3 +252,36 @@ class TestGetRelatedField(unittest.TestCase):
             'remote_field',
             self._callFUT(self._getDummyField(), (1, 9))
         )
+
+
+class TestGetThrough(unittest.TestCase):
+
+    def _callFUT(self, field, django_version):
+        from modelsdoc.utils import get_through
+        return get_through(field, django_version)
+
+    def _getDummyField(self):
+
+        class DummyRel(object):
+
+            def __init__(self, through):
+                self.through = through
+
+        class DummyField(object):
+
+            rel = DummyRel('rel')
+            remote_field = DummyRel('remote_field')
+
+        return DummyField()
+
+    def test_django_ver18_lower(self):
+        self.assertEqual(
+            'rel',
+            self._callFUT(self._getDummyField(), (1, 8))
+        )
+
+    def test_django_ver19(self):
+        self.assertEqual(
+            'remote_field',
+            self._callFUT(self._getDummyField(), (1, 9))
+        )
