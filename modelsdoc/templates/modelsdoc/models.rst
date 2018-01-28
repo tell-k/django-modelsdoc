@@ -6,7 +6,8 @@
 
 {% for model in models %}
 {{ model.name }}({{ model.class_fullname }})
------------------------------------------------------------------------------------------
++{% bytes_count_section '-' model.name model.class_fullname '()' %}
+
 
 ::
 

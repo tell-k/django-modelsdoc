@@ -51,3 +51,19 @@ class TestGetAttr(TestCase):
 
         self.assertEqual('test', self._callFUT(Dummy(), 'test'))
         self.assertEqual('', self._callFUT(Dummy(), 'non_exists_attr'))
+
+
+class TestBytesCountSection(TestCase):
+
+    def _getTargetTags(self):
+        return """
+{% load modelsdoc_tags %}
+{% bytes_count_section '-' 'test' 'テスト' %}
+"""
+
+    def _callFUT(self, *args):
+        t = Template(self._getTargetTags())
+        return t.render(Context())
+
+    def test_bytes_count_section_length(self):
+        self.assertEqual('\n\n----------\n', self._callFUT())

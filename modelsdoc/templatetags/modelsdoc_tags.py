@@ -8,6 +8,7 @@
 """
 from __future__ import division, print_function, absolute_import, unicode_literals  # NOQA
 
+from wcwidth import wcswidth
 from django.template import Library, Node
 
 register = Library()
@@ -57,3 +58,23 @@ def emptylineless(parser, token):
 @register.filter
 def get_attr(obj, attr):
     return getattr(obj, attr, '')
+
+
+@register.simple_tag
+def bytes_count_section(charactor, *args):
+    """
+    Get string length line
+
+    Example usage::
+
+        {% bytes_count_section '-' 'test' 'テスト' %}
+
+    This example would return this HTML::
+
+        ----------
+    """
+    counter = 0
+    for v in args:
+        length = wcswidth(v)
+        counter += length
+    return counter * charactor
