@@ -5,9 +5,8 @@
    :local:
 
 {% for model in models %}
-{{ model.name }}({{ model.class_fullname }})
-+{% bytes_count_section '-' model.name model.class_fullname '()' %}
-
+{{ model.display_name }}
+{{ model.display_name_length|str_repeat:'-' }}
 
 ::
 

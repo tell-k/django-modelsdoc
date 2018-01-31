@@ -127,6 +127,22 @@ class TestModelWrapper(TestCase):
         )
         self.assertEqual('DummyModel', target.class_name)
 
+    @mock.patch('modelsdoc.wrappers.class_to_string', return_value='dummy')
+    def test_display_name(self, mock):
+        target = self._makeOne(
+            self._getDummyModel(self._getDummyModel()),
+            'connection'
+        )
+        self.assertEqual('name(dummy)', target.display_name)
+
+    @mock.patch('modelsdoc.wrappers.class_to_string', return_value='dummy')
+    def test_display_name_length(self, mock):
+        target = self._makeOne(
+            self._getDummyModel(self._getDummyModel()),
+            'connection'
+        )
+        self.assertEqual(11, target.display_name_length)
+
     def test_doc(self):
         target = self._makeOne(self._getDummyModel(), 'connection')
         self.assertEqual(' TEST DOC STRING ', target.doc)
