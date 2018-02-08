@@ -136,8 +136,19 @@ License
 
 MIT Licence. See the LICENSE file for specific terms.
 
+
+Authors
+=========
+
+* tell-k 
+* wanshot
+
 History
 =======
+
+0.1.9(Feb 8, 2018)
+---------------------
+* Fix `Set section length dynamically <https://github.com/tell-k/django-modelsdoc/pull/6>`_. Thanks to wanshot
 
 0.1.8(Dec 3, 2017)
 ---------------------

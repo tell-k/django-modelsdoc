@@ -82,9 +82,11 @@ class TestModelWrapper(TestCase):
     def _makeOne(self, *args, **kwargs):
         return self._getTargetClass()(*args, **kwargs)
 
-    def _getDummyMeta(self):
+    def _getDummyMeta(self, verbose_name='name'):
+        vname = verbose_name
+
         class DummyMeta(object):
-            verbose_name = 'name'
+            verbose_name = vname
             model = 'TestModel'
             concrete_model = 'TestModel'
             concrete_fields = ['field1', 'field2', 'field3']
@@ -92,7 +94,7 @@ class TestModelWrapper(TestCase):
 
         return DummyMeta()
 
-    def _getDummyModel(self, model=None):
+    def _getDummyModel(self, model=None, meta=None):
         class DummyModel(object):
             """ TEST DOC STRING """
 
@@ -104,7 +106,9 @@ class TestModelWrapper(TestCase):
                 self._meta = meta
                 self.proxy_attr = 'test'
 
-        return DummyModel(model, self._getDummyMeta())
+        if meta is None:
+            meta = self._getDummyMeta()
+        return DummyModel(model, meta)
 
     def _getDummyAnalyizer(self):
         class DummyAnalyizer(object):
@@ -137,11 +141,16 @@ class TestModelWrapper(TestCase):
 
     @mock.patch('modelsdoc.wrappers.class_to_string', return_value='dummy')
     def test_display_name_length(self, mock):
-        target = self._makeOne(
-            self._getDummyModel(self._getDummyModel()),
-            'connection'
+        test_patterns = (
+            # (verbose_name, expected)
+            ('name', 11),  # "name" + "(dummy)" => 11
+            ('日本', 13),  # "日本" + "(dummy)" => 13
         )
-        self.assertEqual(11, target.display_name_length)
+        for verbose_name, excpected in test_patterns:
+            with self.subTest(verbose_name=verbose_name):
+                meta = self._getDummyMeta(verbose_name=verbose_name)
+                target = self._makeOne(self._getDummyModel(meta=meta), 'connection')
+                self.assertEqual(excpected, target.display_name_length)
 
     def test_doc(self):
         target = self._makeOne(self._getDummyModel(), 'connection')

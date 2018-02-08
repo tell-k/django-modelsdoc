@@ -56,11 +56,18 @@ class TestGetAttr(TestCase):
 class TestStrRepeat(TestCase):
 
     def _getTargetTags(self):
-        return "{% load modelsdoc_tags %}{{ length|str_repeat:'-' }}"
+        return '{% load modelsdoc_tags %}{{ num|str_repeat:"-" }}'
 
-    def _callFUT(self, length):
+    def _callFUT(self, num):
         t = Template(self._getTargetTags())
-        return t.render(Context({'length': length}))
+        return t.render(Context({'num': num}))
 
-    def test_str_repeat(self):
-        self.assertEqual('-----', self._callFUT(5))
+    def test_repeat(self):
+        test_patterns = (
+            # (num, expected),
+            (5, '-----'),
+            (0, ''),
+        )
+        for num, expected in test_patterns:
+            with self.subTest(num=num):
+                self.assertEqual(expected, self._callFUT(num))

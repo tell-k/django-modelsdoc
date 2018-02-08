@@ -8,4 +8,4 @@
 """
 from __future__ import division, print_function, absolute_import, unicode_literals  # NOQA
 
-__version__ = '0.1.8'
+__version__ = '0.1.9'
