@@ -2,7 +2,9 @@
 
 import re
 import os
+import sys
 from setuptools import setup, find_packages
+from setuptools import Command
 from setuptools.command.test import test as TestCommand
 
 
@@ -14,8 +16,6 @@ class DjangoTest(TestCommand):
         self.test_suite = True
 
     def run_tests(self):
-        import os
-        import sys
         os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'tests.settings')
 
         test_dir = os.path.dirname(__file__)
@@ -34,6 +34,31 @@ class DjangoTest(TestCommand):
         )
         errno = runner.run_tests(['tests'])
         sys.exit(errno)
+
+
+class GenerateSamples(Command):
+
+    description = 'Generate sample docs into tests directory.'
+    user_options = []
+
+    def initialize_options(self):
+        pass
+
+    def finalize_options(self):
+        pass
+
+    def run(self):
+        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'tests.settings')
+        sys.path.insert(0, os.path.dirname(__file__))
+
+        import django
+        from django.core.management import call_command
+
+        if django.VERSION >= (1, 7):
+            django.setup()
+
+        call_command('listing_models', format='rst', output='tests/sample_models.rst')
+        call_command('listing_models', format='md', output='tests/sample_models.md')
 
 
 here = os.path.dirname(__file__)
@@ -99,7 +124,10 @@ setup(
     url='https://github.com/tell-k/django-modelsdoc',
     install_requires=install_requires,
     tests_require=tests_require,
-    cmdclass={'test': DjangoTest},
+    cmdclass={
+        'test': DjangoTest,
+        'generate_samples': GenerateSamples
+    },
     author='tell-k',
     author_email='ffk2005@gmail.com',
     classifiers=classifiers,

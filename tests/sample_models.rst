@@ -6,7 +6,7 @@
 
 
 permission(django.contrib.auth.models.Permission)
------------------------------------------------------------------------------------------
+-------------------------------------------------
 
 ::
 
@@ -80,13 +80,13 @@ permission(django.contrib.auth.models.Permission)
 
 Options::
 
- ordering : (u'content_type__app_label', u'content_type__model', u'codename')
- unique_together : ((u'content_type', u'codename'),)
- default_permissions : (u'add', u'change', u'delete')
+ unique_together : (('content_type', 'codename'),)
+ ordering : ('content_type__app_label', 'content_type__model', 'codename')
+ default_permissions : ('add', 'change', 'delete')
 
 
 group-permission relationship(django.contrib.auth.models.Group_permissions)
------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------
 
 ::
 
@@ -132,11 +132,11 @@ group-permission relationship(django.contrib.auth.models.Group_permissions)
 Options::
 
  unique_together : (('group', 'permission'),)
- default_permissions : (u'add', u'change', u'delete')
+ default_permissions : ('add', 'change', 'delete')
 
 
 group(django.contrib.auth.models.Group)
------------------------------------------------------------------------------------------
+---------------------------------------
 
 ::
 
@@ -146,7 +146,7 @@ group(django.contrib.auth.models.Group)
     groups.
 
     A user in a group automatically has all the permissions granted to that
-    group. For example, if the group Site editors has the permission
+    group. For example, if the group 'Site editors' has the permission
     can_edit_home_page, any user in that group will have that permission.
 
     Beyond permissions, groups are a convenient way to categorize users to
@@ -196,11 +196,11 @@ group(django.contrib.auth.models.Group)
 
 Options::
 
- default_permissions : (u'add', u'change', u'delete')
+ default_permissions : ('add', 'change', 'delete')
 
 
 user-group relationship(django.contrib.auth.models.User_groups)
------------------------------------------------------------------------------------------
+---------------------------------------------------------------
 
 ::
 
@@ -246,11 +246,11 @@ user-group relationship(django.contrib.auth.models.User_groups)
 Options::
 
  unique_together : (('user', 'group'),)
- default_permissions : (u'add', u'change', u'delete')
+ default_permissions : ('add', 'change', 'delete')
 
 
 user-permission relationship(django.contrib.auth.models.User_user_permissions)
------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------
 
 ::
 
@@ -296,11 +296,11 @@ user-permission relationship(django.contrib.auth.models.User_user_permissions)
 Options::
 
  unique_together : (('user', 'permission'),)
- default_permissions : (u'add', u'change', u'delete')
+ default_permissions : ('add', 'change', 'delete')
 
 
 user(django.contrib.auth.models.User)
------------------------------------------------------------------------------------------
+-------------------------------------
 
 ::
 
@@ -356,7 +356,7 @@ user(django.contrib.auth.models.User)
      - 
    * - username
      - username
-     - varchar(30)
+     - varchar(150)
      - 
      - True
      - 
@@ -372,7 +372,7 @@ user(django.contrib.auth.models.User)
      - 
    * - last name
      - last_name
-     - varchar(30)
+     - varchar(150)
      - 
      - 
      - 
@@ -430,12 +430,12 @@ user(django.contrib.auth.models.User)
 
 Options::
 
- default_permissions : (u'add', u'change', u'delete')
  swappable : AUTH_USER_MODEL
+ default_permissions : ('add', 'change', 'delete')
 
 
 content type(django.contrib.contenttypes.models.ContentType)
------------------------------------------------------------------------------------------
+------------------------------------------------------------
 
 ::
 
@@ -480,12 +480,12 @@ content type(django.contrib.contenttypes.models.ContentType)
 
 Options::
 
- unique_together : ((u'app_label', u'model'),)
- default_permissions : (u'add', u'change', u'delete')
+ unique_together : (('app_label', 'model'),)
+ default_permissions : ('add', 'change', 'delete')
 
 
 site(django.contrib.sites.models.Site)
------------------------------------------------------------------------------------------
+--------------------------------------
 
 ::
 
@@ -514,7 +514,7 @@ site(django.contrib.sites.models.Site)
      - domain
      - varchar(100)
      - 
-     - 
+     - True
      - 
      - 
      - 
@@ -530,12 +530,12 @@ site(django.contrib.sites.models.Site)
 
 Options::
 
- ordering : (u'domain',)
- default_permissions : (u'add', u'change', u'delete')
+ ordering : ('domain',)
+ default_permissions : ('add', 'change', 'delete')
 
 
 Poll(tests.models.Poll)
------------------------------------------------------------------------------------------
+-----------------------
 
 ::
 
@@ -615,11 +615,11 @@ Poll(tests.models.Poll)
 
 Options::
 
- default_permissions : (u'add', u'change', u'delete')
+ default_permissions : ('add', 'change', 'delete')
 
 
 Genre(tests.models.Genre)
------------------------------------------------------------------------------------------
+-------------------------
 
 ::
 
@@ -659,11 +659,11 @@ Genre(tests.models.Genre)
 
 Options::
 
- default_permissions : (u'add', u'change', u'delete')
+ default_permissions : ('add', 'change', 'delete')
 
 
 choice-genre relationship(tests.models.Choice_genres)
------------------------------------------------------------------------------------------
+-----------------------------------------------------
 
 ::
 
@@ -709,11 +709,11 @@ choice-genre relationship(tests.models.Choice_genres)
 Options::
 
  unique_together : (('choice', 'genre'),)
- default_permissions : (u'add', u'change', u'delete')
+ default_permissions : ('add', 'change', 'delete')
 
 
 Choice(tests.models.Choice)
------------------------------------------------------------------------------------------
+---------------------------
 
 ::
 
@@ -770,11 +770,11 @@ Choice(tests.models.Choice)
 
 Options::
 
- default_permissions : (u'add', u'change', u'delete')
+ default_permissions : ('add', 'change', 'delete')
 
 
 Vote(tests.models.Vote)
------------------------------------------------------------------------------------------
+-----------------------
 
 ::
 
@@ -833,7 +833,7 @@ Vote(tests.models.Vote)
 Options::
 
  unique_together : (('user', 'poll'),)
- default_permissions : (u'add', u'change', u'delete')
+ default_permissions : ('add', 'change', 'delete')
 
 
 

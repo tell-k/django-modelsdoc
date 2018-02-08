@@ -38,9 +38,9 @@
 
 Options
 ```
-ordering : (u'content_type__app_label', u'content_type__model', u'codename')
-unique_together : ((u'content_type', u'codename'),)
-default_permissions : (u'add', u'change', u'delete')
+unique_together : (('content_type', 'codename'),)
+ordering : ('content_type__app_label', 'content_type__model', 'codename')
+default_permissions : ('add', 'change', 'delete')
 ```
 
 
@@ -59,7 +59,7 @@ Group_permissions(id, group, permission)
 Options
 ```
 unique_together : (('group', 'permission'),)
-default_permissions : (u'add', u'change', u'delete')
+default_permissions : ('add', 'change', 'delete')
 ```
 
 
@@ -72,7 +72,7 @@ default_permissions : (u'add', u'change', u'delete')
     groups.
 
     A user in a group automatically has all the permissions granted to that
-    group. For example, if the group Site editors has the permission
+    group. For example, if the group 'Site editors' has the permission
     can_edit_home_page, any user in that group will have that permission.
 
     Beyond permissions, groups are a convenient way to categorize users to
@@ -92,7 +92,7 @@ default_permissions : (u'add', u'change', u'delete')
 
 Options
 ```
-default_permissions : (u'add', u'change', u'delete')
+default_permissions : ('add', 'change', 'delete')
 ```
 
 
@@ -111,7 +111,7 @@ User_groups(id, user, group)
 Options
 ```
 unique_together : (('user', 'group'),)
-default_permissions : (u'add', u'change', u'delete')
+default_permissions : ('add', 'change', 'delete')
 ```
 
 
@@ -130,7 +130,7 @@ User_user_permissions(id, user, permission)
 Options
 ```
 unique_together : (('user', 'permission'),)
-default_permissions : (u'add', u'change', u'delete')
+default_permissions : ('add', 'change', 'delete')
 ```
 
 
@@ -151,9 +151,9 @@ default_permissions : (u'add', u'change', u'delete')
 |password |password |varchar(128) | | | | | |
 |last login |last_login |datetime | | | |Both | |
 |superuser status |is_superuser |bool | | | |Blank | |
-|username |username |varchar(30) | |True | | | |
+|username |username |varchar(150) | |True | | | |
 |first name |first_name |varchar(30) | | | |Blank | |
-|last name |last_name |varchar(30) | | | |Blank | |
+|last name |last_name |varchar(150) | | | |Blank | |
 |email address |email |varchar(254) | | | |Blank | |
 |staff status |is_staff |bool | | | |Blank | |
 |active |is_active |bool | | | |Blank | |
@@ -163,8 +163,8 @@ default_permissions : (u'add', u'change', u'delete')
 
 Options
 ```
-default_permissions : (u'add', u'change', u'delete')
 swappable : AUTH_USER_MODEL
+default_permissions : ('add', 'change', 'delete')
 ```
 
 
@@ -182,8 +182,8 @@ ContentType(id, app_label, model)
 
 Options
 ```
-unique_together : ((u'app_label', u'model'),)
-default_permissions : (u'add', u'change', u'delete')
+unique_together : (('app_label', 'model'),)
+default_permissions : ('add', 'change', 'delete')
 ```
 
 
@@ -196,13 +196,13 @@ Site(id, domain, name)
 |Fullname|Name|Type|PK|Unique|Index|Null/Blank|Comment|
 |---|---|---|---|---|---|---|---|
 |ID |id |integer |True |True | |Blank | |
-|domain name |domain |varchar(100) | | | | | |
+|domain name |domain |varchar(100) | |True | | | |
 |display name |name |varchar(50) | | | | | |
 
 Options
 ```
-ordering : (u'domain',)
-default_permissions : (u'add', u'change', u'delete')
+ordering : ('domain',)
+default_permissions : ('add', 'change', 'delete')
 ```
 
 
@@ -227,7 +227,7 @@ default_permissions : (u'add', u'change', u'delete')
 
 Options
 ```
-default_permissions : (u'add', u'change', u'delete')
+default_permissions : ('add', 'change', 'delete')
 ```
 
 
@@ -247,7 +247,7 @@ default_permissions : (u'add', u'change', u'delete')
 
 Options
 ```
-default_permissions : (u'add', u'change', u'delete')
+default_permissions : ('add', 'change', 'delete')
 ```
 
 
@@ -266,7 +266,7 @@ Choice_genres(id, choice, genre)
 Options
 ```
 unique_together : (('choice', 'genre'),)
-default_permissions : (u'add', u'change', u'delete')
+default_permissions : ('add', 'change', 'delete')
 ```
 
 
@@ -289,7 +289,7 @@ default_permissions : (u'add', u'change', u'delete')
 
 Options
 ```
-default_permissions : (u'add', u'change', u'delete')
+default_permissions : ('add', 'change', 'delete')
 ```
 
 
@@ -314,7 +314,7 @@ default_permissions : (u'add', u'change', u'delete')
 Options
 ```
 unique_together : (('user', 'poll'),)
-default_permissions : (u'add', u'change', u'delete')
+default_permissions : ('add', 'change', 'delete')
 ```
 
 
