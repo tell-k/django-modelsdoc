@@ -141,16 +141,15 @@ class TestModelWrapper(TestCase):
 
     @mock.patch('modelsdoc.wrappers.class_to_string', return_value='dummy')
     def test_display_name_length(self, mock):
-        test_patterns = (
-            # (verbose_name, expected)
-            ('name', 11),  # "name" + "(dummy)" => 11
-            ('日本', 13),  # "日本" + "(dummy)" => 13
-        )
-        for verbose_name, excpected in test_patterns:
-            with self.subTest(verbose_name=verbose_name):
-                meta = self._getDummyMeta(verbose_name=verbose_name)
-                target = self._makeOne(self._getDummyModel(meta=meta), 'connection')
-                self.assertEqual(excpected, target.display_name_length)
+        meta = self._getDummyMeta(verbose_name='name')
+        target = self._makeOne(self._getDummyModel(meta=meta), 'connection')
+        self.assertEqual(11, target.display_name_length)
+
+    @mock.patch('modelsdoc.wrappers.class_to_string', return_value='dummy')
+    def test_display_name_length_for_multibyte(self, mock):
+        meta = self._getDummyMeta(verbose_name=u'日本')
+        target = self._makeOne(self._getDummyModel(meta=meta), 'connection')
+        self.assertEqual(13, target.display_name_length)
 
     def test_doc(self):
         target = self._makeOne(self._getDummyModel(), 'connection')

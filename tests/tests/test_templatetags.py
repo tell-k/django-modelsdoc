@@ -63,11 +63,7 @@ class TestStrRepeat(TestCase):
         return t.render(Context({'num': num}))
 
     def test_repeat(self):
-        test_patterns = (
-            # (num, expected),
-            (5, '-----'),
-            (0, ''),
-        )
-        for num, expected in test_patterns:
-            with self.subTest(num=num):
-                self.assertEqual(expected, self._callFUT(num))
+        self.assertEqual('-----', self._callFUT(5))
+
+    def test_repeat_zero_length(self):
+        self.assertEqual('', self._callFUT(0))
