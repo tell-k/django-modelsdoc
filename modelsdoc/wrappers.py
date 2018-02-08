@@ -10,6 +10,7 @@ from __future__ import division, print_function, absolute_import, unicode_litera
 
 from sphinx.pycode import ModuleAnalyzer
 import django
+from django.utils.encoding import force_bytes
 
 from modelsdoc.utils import (
     class_to_string, get_foreignkey,
@@ -66,6 +67,15 @@ class ModelWrapper(object):
     @property
     def class_name(self):
         return self._model._model.__name__
+
+    @property
+    def display_name(self):
+        return '{}({})'.format(self.name, self.class_fullname)
+
+    @property
+    def display_name_length(self):
+        """ Return length of byte string. for reST section """
+        return len(force_bytes(self.display_name))
 
     @property
     def doc(self):

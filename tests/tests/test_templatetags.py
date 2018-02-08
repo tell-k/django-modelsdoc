@@ -51,3 +51,16 @@ class TestGetAttr(TestCase):
 
         self.assertEqual('test', self._callFUT(Dummy(), 'test'))
         self.assertEqual('', self._callFUT(Dummy(), 'non_exists_attr'))
+
+
+class TestStrRepeat(TestCase):
+
+    def _getTargetTags(self):
+        return "{% load modelsdoc_tags %}{{ length|str_repeat:'-' }}"
+
+    def _callFUT(self, length):
+        t = Template(self._getTargetTags())
+        return t.render(Context({'length': length}))
+
+    def test_str_repeat(self):
+        self.assertEqual('-----', self._callFUT(5))

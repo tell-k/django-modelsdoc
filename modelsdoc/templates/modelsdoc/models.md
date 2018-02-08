@@ -2,7 +2,7 @@
 {% autoescape off %}
 
 {% for model in models %}
-## {{ model.name }}({{ model.class_fullname }})
+## {{ model.display_name }}
 
 ```
 {{ model.doc }}

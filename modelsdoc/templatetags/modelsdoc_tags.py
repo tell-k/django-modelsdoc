@@ -57,3 +57,8 @@ def emptylineless(parser, token):
 @register.filter
 def get_attr(obj, attr):
     return getattr(obj, attr, '')
+
+
+@register.filter
+def str_repeat(times, string):
+    return string * times
