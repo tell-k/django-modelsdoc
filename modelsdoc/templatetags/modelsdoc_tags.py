@@ -97,7 +97,8 @@ def yamldump(models):
             if field.default != NOT_PROVIDED:
                 default_value = field.default
                 if callable(default_value):
-                    default_value = default_value.__module__ + "." + default_value.__name__
+                    default_value = (default_value.__module__
+                                     + "." + default_value.__name__)
 
             column = {
                 "name": field.name,
