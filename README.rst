@@ -146,6 +146,10 @@ Authors
 History
 =======
 
+0.1.10(Nov 28, 2019)
+---------------------
+* Add Support YAML format.
+
 0.1.9(Feb 8, 2018)
 ---------------------
 * Fix `Set section length dynamically <https://github.com/tell-k/django-modelsdoc/pull/6>`_. Thanks to wanshot
