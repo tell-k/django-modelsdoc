@@ -146,6 +146,10 @@ Authors
 History
 =======
 
+0.1.11(Nov 28, 2019)
+---------------------
+* Add models.yaml template file.
+
 0.1.10(Nov 28, 2019)
 ---------------------
 * Add Support YAML format.
