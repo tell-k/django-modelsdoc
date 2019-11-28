@@ -1,0 +1,4 @@
+{% load modelsdoc_tags modelsdoc_tags %}
+{% autoescape off %}
+{{ models|yamldump }}
+{% endautoescape %}
